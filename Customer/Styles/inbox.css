@@ -1,0 +1,109 @@
+.content-container {
+    background-color: #ffffff;
+    border-radius: 7px;
+    padding: 0.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Contacts */
+#msgcontainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+}
+
+.messages-item {
+    margin: 0 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.messages-item button {
+    border: 0;
+    background: 0;
+}
+
+.messages-item i {
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+/* Contacts end */
+
+.chatbox-name {
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+/* Chat box */
+
+.chatbox-container {
+    border-radius: 7px;
+    padding: 0.5rem;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sent, .received {
+    padding: 0.5rem;
+    border-radius: 7px;
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+}
+
+.sent {
+    background-color: #ffa600;
+    align-self: flex-end;
+}
+
+.received {
+    background-color: #ffd689;
+    align-self: flex-start;
+}
+
+.chatbox-input {
+    display: flex;
+    margin-top: 1rem;
+}
+
+#message {
+    flex: 1;
+    background-color: #f1f1ef;
+    border: 0;
+    border-radius: 7px;
+    padding: 0.5rem;
+}
+
+#message:focus {
+    outline: none;
+}
+
+#send-message {
+    border: 1px solid #ffa500;
+    background: 0;
+    color: #ffa500;
+    margin-left: 0.5rem;
+    border-radius: 50%;
+}
+
+/* Chat box end */
+
+@media (max-width:700px) {
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+}

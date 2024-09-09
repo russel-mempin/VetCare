@@ -1,0 +1,56 @@
+/* About us section */
+#about img {
+    display: none;
+}
+/* About us section */
+
+/* Meet the team section */
+#team {
+    margin: 7rem 0;
+}
+
+#team .grid-container {
+    gap: 2rem;
+}
+
+#team .grid-item img {
+    width: 200px;
+    height: 200px;
+}
+
+#team .grid-item p:first-of-type {
+    font-weight: 500;
+}
+/* Meet the team section */
+
+@media (min-width:961px) {
+    #about {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+    }
+
+    #about .header {
+        font-size: 3.5em;
+        text-align: center;
+    }
+
+    #about .paragraph {
+        font-size: 1.2em;
+        margin: 2rem 0;
+        padding: 0;
+    }
+
+    #about img {
+        display: block;
+        justify-self: flex-start;
+    }
+
+    #team .header {
+        margin: 10rem 0;
+    }
+
+    #team .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

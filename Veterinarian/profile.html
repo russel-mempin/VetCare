@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | VetCare</title>
+    <link rel="icon" href="Images/logoonly.png">
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/profile.css">
+</head>
+
+<body>
+    <!--Sidenav-->
+    <nav id="sideNav" class="sticky">
+        <div id="navHead">
+            <div class="flex-container-jcenter-acenter">
+                <img src="Images/logoonly.png" alt="VetCare Logo">
+                <h1>VetCare</h1>
+            </div>
+            <div id="mobileUserSection" class="flex-container-jcenter-acenter">
+                <p id="mobileWelcomeName">Display Name</p>
+                <button id="mobileProfileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="mobileProfileSettingsContainer" style="display: none;">
+                    <div id="mobileSettingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Veterinarian</p>
+                            <a id="mobileSignOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="mobileUserDetails">
+                                <p id="mobileDisplayName">Display Name</p>
+                                <p id="mobileUserEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-calendar-days fa-fw"></i>
+                        <p>Schedule List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="services.html">
+                        <i class="fa-solid fa-shield-dog fa-fw"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="pet-medical-records.html">
+                        <i class="fa-solid fa-book-medical fa-fw"></i>
+                        <p>Pet Medical Records</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="active">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="contact-pet-owner.html">
+                        <i class="fa-solid fa-message fa-fw"></i>
+                        <p>Contact Pet Owner</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <header>
+            <span onclick="toggleNav()">&#9776;</span>
+            <div>
+                <p id="welcomeName">User</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="webProfileSettingsContainer" style="display: none;">
+                    <div id="settingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Veterinarian</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="userDetails">
+                                <p id="displayName">Display Name</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </header>
+        <main>
+            <!--Content goes here-->
+            <h1 class="title">Profile</h1>
+            <div class="contact-container">
+                <div class="contact-info-box">
+                    <div class="contact-info-row">
+                        <div>
+                            <h1>Name:</h1>
+                            <p id="vetName">Current Name</p>
+                            <input type="text" id="newName" class="orange-input" style="display: none;"
+                                placeholder="Enter new name" />
+                        </div>
+                        <div>
+                            <button id="vetNameEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="vetNameCancelBtn" class="btn gray-btn" style="display: none;">Cancel</button>
+                            <button id="vetNameSaveBtn" class="btn orange-btn" style="display: none;">Save</button>
+                        </div>
+                    </div>
+                    <div class="contact-info-row">
+                        <div>
+                            <h1>E-Mail:</h1>
+                            <p id="vetEmail">Current Email</p>
+                            <input type="text" id="newEmail" class="orange-input" style="display: none;"
+                                placeholder="Enter new E-Mail" />
+                        </div>
+                        <div>
+                            <button id="vetEmailEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="vetEmailCancelBtn" class="btn gray-btn" style="display: none;">Cancel</button>
+                            <button id="vetEmailSaveBtn" class="btn orange-btn" style="display: none;">Save</button>
+                        </div>
+                    </div>
+                    <div class="contact-info-row">
+                        <div>
+                            <h1>Password:</h1>
+                            <p id="vetPassword">Current Password</p>
+                            <input id="newPassword" type="password" class="orange-input" style="display: none;"
+                                placeholder="Enter new password" />
+                        </div>
+                        <div>
+                            <button id="vetPasswordEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="vetPasswordCancelBtn" class="btn gray-btn"
+                                style="display: none;">Cancel</button>
+                            <button id="vetPasswordSaveBtn" class="btn orange-btn" style="display: none;">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-picture-box flex-container-jcenter-acenter">
+                    <img src="Images/logoonly.png">
+                    <h1 id="profileVetName">Name</h1>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!--Content-->
+
+    <script src="Scripts/editProfile.js"></script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signOut, updateProfile, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth();
+        const getSignOut = document.getElementById("signOut");
+        const getMobileSignOut = document.getElementById("mobileSignOut");
+
+        // Check if the user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in with uid: " + user.uid);
+                document.getElementById("welcomeName").innerHTML = "Welcome, " + user.displayName + "!"; // Assign to welcome section
+                document.getElementById("displayName").innerHTML = user.displayName; // Assign to user profile section
+                document.getElementById("userEmail").innerHTML = user.email; // Assign to user profile section
+
+                document.getElementById("mobileWelcomeName").innerHTML = user.displayName; // Assign to mobile welcome section
+                document.getElementById("mobileDisplayName").innerHTML = user.displayName; // Assign to mobile display name
+                document.getElementById("mobileUserEmail").innerHTML = user.email; // Assign to mobile user profile section
+
+                // Display to contact information section (Name and email is gotten from auth instead of database. Auth does not store user passwords.)
+                const reference = ref(db, 'veterinarian_account/' + user.uid);
+                onValue(reference, (snapshot) => {
+                    const data = snapshot.val();
+                    const getPassword = data.password;
+                    const getDoctorPosition = data.doctorPosition;
+
+                    // Display to contact information
+                    document.getElementById("vetName").innerHTML = user.displayName;
+                    document.getElementById("vetEmail").innerHTML = user.email;
+                    document.getElementById("vetPassword").innerHTML = getPassword;
+                    document.getElementById("profileVetName").innerHTML = user.displayName;
+                })
+                // Update vet name to database and update displayName in auth
+                vetNameSaveBtn.addEventListener('click', (e) => {
+                    const newName = document.getElementById("newName").value;
+                    // Updating vet in database
+                    update(reference, {
+                        ownername: newName
+                    })
+                        .then(() => {
+                            // Data updated successfully
+                            console.log("Successfully updated vet name");
+                        })
+                        .catch((error) => {
+                            alert(error)
+                        })
+
+                    // Updates displayName in auth and if successful, refreshes the page.
+                    updateProfile(auth.currentUser, {
+                        displayName: newName
+                    }).then(() => {
+                        console.log("Successfully updated user display name. Reloading page...");
+                        location.reload();
+                    }).catch((error) => {
+                        console.log("There was an error in updating user display name." + error);
+                    });
+
+                    // Toggles display of elements used in updating name
+                    document.getElementById("vetName").style.display = "block";
+                    document.getElementById("vetNameEditBtn").style.display = "block";
+                    document.getElementById("newName").style.display = "none";
+                    document.getElementById("vetNameCancelBtn").style.display = "none";
+                    document.getElementById("vetNameSaveBtn").style.display = "none";
+                })
+
+                // Update vet email
+                vetEmailSaveBtn.addEventListener('click', (e) => {
+                    const newEmail = document.getElementById("newEmail").value;
+                    // Updating email in database
+                    update(reference, {
+                        email: newEmail
+                    })
+                        .then(() => {
+                            console.log("Successfully updated user email in the database.");
+                        })
+                        .catch((error) => {
+                            alert(error)
+                        })
+
+                    // Updates email in auth and if successful, refreshes the page.
+                    updateEmail(auth.currentUser, newEmail).then(() => {
+                        // Email updated!
+                        console.log("Successfully updated user email in auth.");
+                        location.reload();
+                    }).catch((error) => {
+                        // An error occurred
+                        console.log("There was an error in updating user email." + error);
+                    });
+
+                    // Toggles display of elements used in updating email
+                    document.getElementById("vetEmail").style.display = "block";
+                    document.getElementById("vetEmailEditBtn").style.display = "block";
+                    document.getElementById("newEmail").style.display = "none";
+                    document.getElementById("vetEmailCancelBtn").style.display = "none";
+                    document.getElementById("vetEmailSaveBtn").style.display = "none";
+                })
+
+                // Update vet password
+                vetPasswordSaveBtn.addEventListener('click', (e) => {
+                    var newPassword = document.getElementById("newPassword").value;
+                    var confirmNewPassword = document.getElementById("confirmNewPassword").value;
+                    // Updating password in database
+                    update(reference, {
+                        password: newPassword
+                    })
+                        .then(() => {
+                            console.log("Successfully updated password in the database.");
+                        })
+
+                    // Updating password in auth
+                    updatePassword(user, newPassword).then(() => {
+                        // Update successful.
+                        console.log("Successfully updated password in auth.");
+                        location.reload();
+                    }).catch((error) => {
+                        // An error ocurred
+                        // ...
+                    });
+
+                    // Toggles display of elements used in updating password
+                    document.getElementById("vetPassword").style.display = "block";
+                    document.getElementById("vetPasswordEditBtn").style.display = "block";
+                    document.getElementById("newPassword").style.display = "none";
+                    document.getElementById("vetPasswordCancelBtn").style.display = "none";
+                    document.getElementById("vetPasswordSaveBtn").style.display = "none";
+                    document.getElementById("confirmNewPassword").style.display = "none";
+                })
+            }
+        });
+        // Sign out web user
+        getSignOut.addEventListener('click', (e) => {
+            console.log("Signing out...");
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    console.log("An error occured while signing out.");
+                });
+        });
+
+        // Sign out mobile user
+        getMobileSignOut.addEventListener('click', (e) => {
+            console.log("Signing out...");
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    console.log("An error occured while signing out.");
+                });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Accounts | Admin</title>
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="Images/logoonly.png">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/add-user.css">
+    <link rel="stylesheet" href="Styles/cust-accounts.css">
+</head>
+
+<body>
+
+    <!--Add customer account-->
+    <div id="floatingFormContainer">
+        <div class="add-form-container">
+            <h1>ADD CUSTOMER ACCOUNT</h1>
+            <form class="add-form">
+                <input type="text" id="customerName" name="customerName" placeholder="Customer Name" required />
+                <input type="tel" id="customerTelephone" name="customerTelephone" placeholder="Telephone No."
+                    onkeypress="return onlyNumberKey(event)" pattern="[0-9]{11}" required />
+                <input type="tel" id="customerPhone" name="customerPhone" placeholder="Phone Number"
+                    onkeypress="return onlyNumberKey(event)" pattern="[0-9]{11}" required />
+                <input type="text" id="customerEmail" name="email" placeholder="Email" required />
+                <div class="two-columns password">
+                    <input type="password" id="password" name="password" placeholder="Password" required />
+                    <input type="password" id="confirmpword" name="confirmpword" placeholder="Confirm Password"
+                        required />
+                </div>
+                <input type="text" id="customerAddress" name="customerAddress" placeholder="Address" required />
+                <div class="two-columns buttons">
+                    <input type="button" id="closeForm" value="Cancel">
+                    <button type="button" id="submitData" name="submitData">Add Customer Account</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="add-status-container">
+            <div id="success-box" class="add-status">
+                <img src="Images/check.png">
+                <p>Customer has been added successfully.</p>
+            </div>
+            <div id="failure-box" class="add-status">
+                <img src="Images/xmark.png">
+                <p>Operation failed.</p>
+            </div>
+        </div>
+    </div>
+    <!--Add customer account-->
+
+    <!--Sidenav-->
+    <div id="sidenav">
+        <div class="sidenav-header">
+            <img src="Images/logoonly.png">
+            <h1>VetCare</h1>
+        </div>
+        <div class="links">
+            <ul>
+                <li><a href="index.html">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <p>Home</p>
+                    </a></li>
+                <li><a href="appointment-list.html">
+                        <i class="fa-solid fa-list fa-fw"></i>
+                        <p>Appointment List</p>
+                    </a></li>
+                <li><a href="services.html">
+                        <i class="fa-solid fa-paw fa-fw"></i>
+                        <p>Services</p>
+                    </a></li>
+                <li><a href="vet-accounts.html">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Vet Accounts</p>
+                    </a></li>
+                <li class="active"><a href="cust-accounts.html">
+                        <i class="fa-solid fa-user fa-fw"></i>
+                        <p>Customer Accounts</p>
+                    </a></li>
+                <li><a href="reports.html">
+                        <i class="fa-regular fa-file-lines fa-fw"></i>
+                        <p>Reports</p>
+                    </a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <div id="topnav">
+            <div class="one">
+                <span onclick="toggleNav()">&#9776;</span>
+            </div>
+            <div class="two">
+                <p id="welcomename" class="username">User</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="profileSettingsContainer" style="display: none;">
+                    <div class="setting-items">
+                        <div class="row">
+                            <p>VetCare Admin</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="row">
+                            <img src="Images/logoonly.png">
+                            <div class="user-details">
+                                <p id="displayName">Display Name</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div id="content">
+            <h1>Customer Accounts</h1>
+            <div class="search-row">
+                <div class="filter">
+                    <p>Show</p>
+                    <select>
+                        <option disabled selected hidden>Select</option>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                    </select>
+                    <p>Entries</p>
+                </div>
+
+                <button id="formOverlayBtn">Add Customer Account</button>
+
+                <div class="search-btn">
+                    <input type="search" placeholder="Search">
+                    <button type="submit"><i class="fa fa-search fa-fw"></i></button>
+                </div>
+            </div>
+            <div class="cust-accounts-container">
+                <table id="cust-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email Address</th>
+                            <th>Password</th>
+                            <th>Name</th>
+                            <th>Phone No.</th>
+                            <th>Pets Owned</th>
+                            <th>Home Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Data goes here-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Content-->
+
+    <!--Scripts-->
+    <script src="Scripts/sidenav.js"></script>
+    <script src="Scripts/profile.js"></script>
+    <script src="Scripts/form-overlay.js"></script>
+    <script src="Scripts/signup.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const auth = getAuth(app);
+        const user = auth.currentUser;
+        var getSignOut = document.getElementById("signOut");
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in with UID " + user.uid);
+                const getUserData = ref(database, 'admin_account/' + user.uid);
+                onValue(getUserData, (snapshot) => {
+                    const data = snapshot.val();
+                    const getDisplayName = data.fullName;
+                    const getEmail = data.email;
+                    function displayUserSettings() {
+                        document.getElementById("profileSettingsContainer").style.display = "flex";
+                    }
+                    document.getElementById("welcomename").innerHTML = "Welcome, " + getDisplayName + "!";
+                    document.getElementById("displayName").innerHTML = getDisplayName;
+                    document.getElementById("userEmail").innerHTML = getEmail;
+                })
+
+                // Retrieve all veterinarians from the database
+                var rowNum = 0;
+                var petNum = 0;
+                var getTable = document.getElementById("cust-table");
+                var getTableBody = getTable.getElementsByTagName('tbody')[0];
+                const getCustomerData = ref(database, 'customer_account/');
+
+                // Retrieve customer data
+                onValue(getCustomerData, (snapshot) => {
+                    getTableBody.innerHTML = ''; // Clear table contents
+                    rowNum = 0;
+                    snapshot.forEach((childSnapshot) => {
+                        const getCustomerData = childSnapshot.val();
+                        rowNum += 1;
+                        var row = "<tr><td>" + rowNum + "</td>"
+                            + "<td>" + getCustomerData.customer_details.email + "</td>"
+                            + "<td>" + getCustomerData.customer_details.password + "</td>"
+                            + "<td>" + getCustomerData.customer_details.ownername + "</td>"
+                            + "<td>" + getCustomerData.customer_details.contact + "</td>"
+                            + "<td>" + getCustomerData.customer_details.address + "</td></tr>";
+                        getTableBody.innerHTML += row;
+                    });
+                }, {
+                    onlyOnce: true
+                });
+
+                submitData.addEventListener('click', (e) => {
+                    if (document.getElementById('password').value == document.getElementById('confirmpword').value) {
+                        /*Getting value from textboxes*/
+                        var customerName = document.getElementById("customerName").value;
+                        var customerAddress = document.getElementById("customerAddress").value;
+                        var email = document.getElementById("customerEmail").value;
+                        var customerPhone = document.getElementById("customerPhone").value;
+                        var customerTelephone = document.getElementById("customerTelephone").value;
+                        var password = document.getElementById("password").value;
+
+                        createUserWithEmailAndPassword(auth, email, password)
+                            .then((userCredential) => {
+                                // Signed in 
+                                const user = userCredential.user;
+
+                                // Adding customer name to auth
+                                updateProfile(auth.currentUser, {
+                                    displayName: customerName
+                                }).then(() => {
+                                    // Profile updated!
+                                    alert("Profile Updated");
+                                }).catch((error) => {
+                                    // An error occurred
+                                    alert("Profile update errorr")
+                                });
+
+                                // Adding customer details to database
+                                set(ref(database, 'customer_account/' + user.uid + "/customer_details/"), {
+                                    ownername: customerName,
+                                    address: customerAddress,
+                                    email: email,
+                                    contact: customerPhone,
+                                    telephone: customerTelephone,
+                                    password: password
+                                })
+                                .then(() => {
+                                    // Data saved
+                                    alert("Saved to database");
+                                })
+                                .catch((error) => {
+                                    // Data saving failed
+                                    alert("Failed to save to database");
+                                })
+
+                            })
+                            .catch((error) => {
+                                const errorCode = error.code;
+                                const errorMessage = error.message;
+                                // ..
+                            });
+                    }
+                    else {
+                        alert("Passwords do not match. Please try again.");
+                    }
+                });
+            }
+            else {
+                console.log("No user");
+            }
+
+            // Sign out user
+            getSignOut.addEventListener('click', (e) => {
+                console.log("Sign out");
+                signOut(auth).then(() => {
+                    window.location.href = "../Homepage/account_type.html"
+                })
+                    .catch((error) => {
+                        console.log("An error occured while signing out.");
+                    });
+            });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

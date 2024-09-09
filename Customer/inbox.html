@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox | VetCare</title>
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="Images/logoonly.png">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/inbox.css">
+</head>
+
+<body>
+    <!--Sidenav-->
+    <nav id="sideNav" class="sticky">
+        <div id="navHead">
+            <div class="flex-container-jcenter-acenter">
+                <img src="Images/logoonly.png" alt="VetCare Logo">
+                <h1>VetCare</h1>
+            </div>
+            <div id="mobileUserSection" class="flex-container-jcenter-acenter">
+                <p id="mobileWelcomeName">Display Name</p>
+                <button id="mobileProfileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="mobileProfileSettingsContainer" style="display: none;">
+                    <div id="mobileSettingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Customer</p>
+                            <a id="mobileSignOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="mobileUserDetails">
+                                <p id="mobileDisplayName">Display Name</p>
+                                <p id="mobileUserEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fa-solid fa-calendar-days fa-fw"></i>
+                        <p>Appointments</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="pet-records.html">
+                        <i class="fa-solid fa-book-medical fa-fw"></i>
+                        <p>Pets</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="transactions.html">
+                        <i class="fa-solid fa-receipt fa-fw"></i>
+                        <p>Transactions</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="services.html">
+                        <i class="fa-solid fa-paw fa-fw"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="vet-directory.html">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Vet Directory</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="account-profile.html">
+                        <i class="fa-solid fa-address-card fa-fw"></i>
+                        <p>Account</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="inbox.html" class="active">
+                        <i class="fa-solid fa-message fa-fw"></i>
+                        <p>Inbox</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <header>
+            <span onclick="toggleNav()">&#9776;</span>
+            <div>
+                <p id="welcomeName">User</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="webProfileSettingsContainer" style="display: none;">
+                    <div id="settingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Customer</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="userDetails">
+                                <p id="displayName">Display Name</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </header>
+        <main>
+            <!--Content goes here-->
+            <div class="title-container">
+                <h3>Messages</h3>
+            </div>
+
+            <div class="content-container">
+                <div class="messages-container" id="msgcontainer">
+                    <!--Contacts-->
+                </div>
+                <div class="wrapper">
+                    <div class="chatbox-name">
+                        <!--Chat name go here-->
+                    </div>
+                    <div class="chatbox-container">
+                        <div class="chat-container" id="messagesContainer">
+                            <!--Chats go here-->
+                        </div>
+                        <form class="chatbox-input">
+                            <input type="text" id="message" placeholder="Aa" autocomplete="off">
+                            <button type="submit" id="send-message"><i
+                                    class="fa-solid fa-paper-plane fa-fw"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!--Content-->
+
+    <!--Scripts-->
+    <script src="Scripts/sideNavAndProfile.js"></script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue, set, push, child } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth(app);
+        const getSignOut = document.getElementById("signOut");
+
+        //Helper - use for getting elements
+        const $ = val =>
+            document.querySelectorAll(val).length > 1 ?
+                [...document.querySelectorAll(val)] :
+                document.querySelector(val)
+
+        const chatBoxNameContainer = $('.chatbox-name')
+
+        // Check if the user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in with uid: " + user.uid);
+                const displayName = user.displayName;
+                const email = user.email;
+                document.getElementById("welcomeName").innerHTML = "Welcome, " + displayName + "!"; // Assign to welcome section
+                document.getElementById("displayName").innerHTML = displayName; // Assign to user profile section
+                document.getElementById("userEmail").innerHTML = email; // Assign to user profile section
+
+                document.getElementById("mobileWelcomeName").innerHTML = user.displayName; // Assign to mobile welcome section
+                document.getElementById("mobileDisplayName").innerHTML = user.displayName; // Assign to mobile display name
+                document.getElementById("mobileUserEmail").innerHTML = user.email; // Assign to mobile user profile section
+
+                // Variables for retrieving veterinarians
+                var rowNum = 0;
+                const vetcontain = document.getElementById('msgcontainer')
+                const getVetData = ref(database, 'veterinarian_account/');
+                let vetID = '';
+                // Retrieves veterinarians when page is loaded
+                onValue(getVetData, (snapshot) => {
+                    snapshot.forEach((childSnapshot) => {
+                        const vetKey = childSnapshot.key;
+                        const vetData = childSnapshot.val();
+                        rowNum += 1;
+                        const row = `
+                            <div class="messages-item">
+                            <button data-name="${vetData.doctorName}" id="${vetKey}" class="chat-name">
+                                <i class="fa-solid fa-user fa-fw"></i>
+                                <div>${vetData.doctorName}</div>
+                            </button>
+                            </div>
+                        `
+                        vetcontain.innerHTML += row;
+                    });
+
+                    // Adds functionality to the buttons
+                    // Reads the database when the button is clicked.
+                    const vetButtons = $('button.chat-name');
+                    if (vetButtons.length) {
+                        vetButtons.forEach(vetButton => {
+                            vetButton.addEventListener('click', () => {
+                                // If the button is clicked, the messages will be read,
+                                // the vet name is displayed, and the chatbox is cleared.
+                                const currentVetName = vetButton.getAttribute('data-name');
+                                vetID = vetButton.getAttribute('id');
+                                var messagesContainer = document.getElementById("messagesContainer");
+                                messagesContainer.innerHTML = '';
+                                chatBoxNameContainer.innerHTML = currentVetName;
+
+                                // Read messages
+                                const getCustInbox = ref(database, 'messages2/')
+                                onValue(getCustInbox, (snapshot) => {
+                                    messagesContainer.innerHTML = '';
+                                    snapshot.forEach((childSnapshot) => {
+                                        const key = childSnapshot.key;
+                                        const data = childSnapshot.val();
+                                        (data.customerID === user.uid && data.vetID === vetButton.id && data.sender == "vet") &&
+                                            (messagesContainer.innerHTML += `<p class='received'> ${data.message} </p>`);
+                                        (data.customerID === user.uid && data.vetID === vetButton.id && data.sender == "customer") &&
+                                            (messagesContainer.innerHTML += `<p class='sent'> ${data.message} </p>`);
+                                    })
+                                })
+                            });
+                        })
+                        // Send message
+                        document.getElementById("send-message").addEventListener("click", (e) => {
+                            e.preventDefault();
+                            let today = new Date();
+                            let month = today.getMonth() + 1;
+                            let year = today.getFullYear();
+                            let date = today.getDate();
+                            let current_date = `${month}/${date}/${year}`;
+                            let hours = addZero(today.getHours());
+                            let minutes = addZero(today.getMinutes());
+                            let seconds = addZero(today.getSeconds());
+                            let timestamp = `${hours}:${minutes}:${seconds}`;
+                            function addZero(num) {
+                                return num < 10 ? `0${num}` : num;
+                            }
+                            const chatTxt = document.getElementById("message");
+                            const msg = chatTxt.value;
+                            const key = new Date().valueOf();
+                            set(ref(database, `messages2/${key}`), {
+                                message: msg,
+                                vetID: vetID,
+                                customerID: user.uid,
+                                date: timestamp,
+                                sender: 'customer'
+                            })
+                                .then(() => {
+                                    document.getElementById("message").value = '';
+                                })
+                        })
+                    } else {
+                        vetButtons.addEventListener('click', (e) => {
+                            //console.log(vetButton);
+                        })
+                    }
+                }, {
+                    onlyOnce: true
+                });
+
+            }
+            else {
+
+            }
+
+        });
+
+        // Sign out user
+        getSignOut.addEventListener('click', (e) => {
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    alert("An error occured while signing out.");
+                });
+        });
+
+        // Sign out mobile user
+        getMobileSignOut.addEventListener('click', (e) => {
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    alert("An error occured while signing out.");
+                });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

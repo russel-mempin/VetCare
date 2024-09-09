@@ -1,0 +1,85 @@
+.title-container {
+    margin: 0.5rem 0;
+}
+
+/* Name of clicked contact */
+.chatbox-name {
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+/* Contacts */
+#msgcontainer {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.messages-item {
+    margin: 0.5rem 0;
+}
+
+.messages-item button {
+    background: 0;
+    border: 0;
+}
+
+.messages-item button i {
+    padding: 0.5rem;
+    border-radius: 50%;
+    margin: 0.5rem 0;
+    color: #ffffff;
+    background-color: #ffa500;
+}
+/* End of contacts */
+
+/* Chatbox */
+
+#messagesContainer {
+    flex: 1;
+    border: 1px solid #ffa500;
+    background-color: #ffffff;
+    border-radius: 7px;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.received, .sent {
+    padding: 0.5rem;
+    margin: 0.3rem 0;
+    border-radius: 3.5px;
+}
+
+.received {
+    background-color: #ffcf76;
+    align-self: flex-start;
+}
+
+.sent {
+    background-color: #ffa500;
+    align-self: flex-end;
+}
+
+/* End of chatbox */
+
+/* Send message */
+
+.chatbox-input {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+#message {
+    flex: 1;
+}
+
+#send-message { 
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.7rem;
+    border-radius: 50%;
+}
+
+/* End of send message */

@@ -1,0 +1,140 @@
+#titleContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+#titleContainer button {
+    margin: 1rem 0;
+}
+
+/* Start of #petsContainer */
+
+#petsContainer {
+    margin-bottom: 1rem;
+}
+
+#petsContainer .grid-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+}
+
+#petNameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#petNameContainer > * {
+    margin: 0 0.5rem;
+}
+
+#petNameContainer i {
+    padding: 0.5rem;
+    border: 1px solid #ffa500;
+    border-radius: 50%;
+}
+
+#petDetailsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #cfcfcf;
+}
+
+#petDetailsContainer div {
+    background-color: #fec864;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 7px;
+}
+
+#petDetailsContainer div i {
+    background-color: #ffa500;
+    padding: 0.5rem;
+    border-radius: 7px;
+}
+
+#petDetailsContainer div h1 {
+    font-size: 0.9em;
+}
+
+/* End of #petsContainer */
+
+/* Start of #addPetFormContainer */
+#addPetFormContainer {
+    display: none;
+    /* None or block */
+}
+
+#addPetForm {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+    margin-top: 1rem;
+}
+
+.flex-container-jspbet-acenter {
+    grid-area: 1 / 1 / 2 / 5;
+}
+
+#petName {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+#petType {
+    grid-area: 2 / 3 / 3 / 5;
+}
+
+#petBreed {
+    grid-area: 3 / 1 / 4 / 5;
+}
+
+#petBirth {
+    grid-area: 4 / 1 / 5 / 3;
+}
+
+#petSex {
+    grid-area: 4 / 3 / 5 / 5;
+}
+
+.add-pet-buttons {
+    grid-area: 5 / 1 / 6 / 5;
+    display: grid;
+    grid-column-gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* End of #addPetFormContainer */
+
+@media (min-width:961px) {
+    #titleContainer {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #titleContainer button {
+        margin: 0 1rem;
+    }
+
+    #petsContainer {
+        margin: 1rem 0;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #addPetFormContainer {
+        margin: 1rem 0;
+    }
+}

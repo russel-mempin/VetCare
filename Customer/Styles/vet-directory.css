@@ -1,0 +1,45 @@
+.vet-row {
+    display: grid;
+    gap: 1rem;
+}
+
+.vet-item {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0.5em 0;
+    border-radius: 7px;
+    font-size: 0.85em;
+}
+
+.vet-item img {
+    width: 80px;
+}
+
+.vet-item h1 {
+    font-weight: bold;
+}
+
+@media (min-width:961px) {
+
+    main h3 {
+        font-size: 2rem;
+    }
+
+    .vet-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    
+    .vet-item {
+        padding: 0.5em 0;
+        border-radius: 7px;
+        font-size: 1.5em;
+    }
+    
+    .vet-item img {
+        width: 150px;
+    }
+    
+}

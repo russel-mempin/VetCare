@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments | VetCare</title>
+    <link rel="icon" href="Images/logoonly.png">
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/appointments.css">
+</head>
+
+<body>
+    <div id="successContainer">
+        <img src="Images/check.png">
+        <p id="successMessage">Operation Successful.</p>
+    </div>
+    <div id="errorContainer">
+        <img src="Images/xmark.png">
+        <p id="errorMessage">This appointment time is already fully booked.</p>
+    </div>
+    <!--Sidenav-->
+    <nav id="sideNav" class="sticky">
+        <div id="navHead">
+            <div class="flex-container-jcenter-acenter">
+                <img src="Images/logoonly.png" alt="VetCare Logo">
+                <h1>VetCare</h1>
+            </div>
+            <div id="mobileUserSection" class="flex-container-jcenter-acenter">
+                <p id="mobileWelcomeName">Customer</p>
+                <button id="mobileProfileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="mobileProfileSettingsContainer" style="display: none;">
+                    <div id="mobileSettingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Customer</p>
+                            <a id="mobileSignOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="mobileUserDetails">
+                                <p id="mobileDisplayName">Customer</p>
+                                <p id="mobileUserEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html" class="active">
+                        <i class="fa-solid fa-calendar-days fa-fw"></i>
+                        <p>Appointments</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="pet-records.html">
+                        <i class="fa-solid fa-book-medical fa-fw"></i>
+                        <p>Pets</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="transactions.html">
+                        <i class="fa-solid fa-receipt fa-fw"></i>
+                        <p>Transactions</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="services.html">
+                        <i class="fa-solid fa-paw fa-fw"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="vet-directory.html">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Vet Directory</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="account-profile.html">
+                        <i class="fa-solid fa-address-card fa-fw"></i>
+                        <p>Account</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="inbox.html">
+                        <i class="fa-solid fa-message fa-fw"></i>
+                        <p>Inbox</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <header>
+            <span onclick="toggleNav()">&#9776;</span>
+            <div>
+                <p id="welcomeName">Customer</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="webProfileSettingsContainer" style="display: none;">
+                    <div id="settingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Customer</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="userDetails">
+                                <p id="displayName">Customer</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </header>
+        <main>
+            <!--Content goes here-->
+            <h1 class="title">Appointments</h1>
+            <div id="buttonRow">
+                <button id="bookAptBtn" class="btn orange-btn" type="button">Book an Appointment</button>
+                <button id="cancelAptBtn" class="btn orange-btn" type="button">Cancel an Appointment</button>
+                <button id="viewAptBtn" class="btn orange-btn" type="button">View Appointments</button>
+            </div>
+            <div id="bookAppointmentContainer" style="display: none">
+                <h1 class="title">Booking an Appointment</h1>
+                <form id="addAptForm">
+                    <div>
+                        <h1>Appointment ID: </h1>
+                        <p id="aptID">AHApt</p>
+                    </div>
+                    <input type="text" id="ownername" class="orange-input" placeholder="Owner name" />
+                    <div>
+                        <select id="servicesDropdown" class="dropdown-list">
+                            <option disabled selected hidden>Select a Service</option>
+                            <!-- Filled with items from database -->
+                        </select>
+                        <select id="vetsDropdown" class="dropdown-list">
+                            <option disabled selected hidden>Select a Vet</option>
+                            <!-- Filled with items from database -->
+                        </select>
+                    </div>
+                    <h1 class="title">Pet Details</h1>
+                    <div>
+                        <label>Select a pet:</label>
+                        <select id="petDropdown" class="dropdown-list">
+                            <option disabled selected hidden>Pet name</option>
+                            <!-- Filled with items from database -->
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" id="petName" class="orange-input" placeholder="Your pet's name" />
+                        <input type="text" id="petType" class="orange-input"
+                            placeholder="Is your pet a dog, cat, etc." />
+                    </div>
+                    <input type="text" id="petBreed" class="orange-input" placeholder="Pet breed" />
+                    <select id="petSex" class="dropdown-list">
+                        <option disabled selected hidden>Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    <div>
+                        <label>Date of birth:</label>
+                        <input type="date" id="petBirth" class="orange-input" />
+                    </div>
+                    <h1 class="title">Appointment Date</h1>
+                    <div>
+                        <label>Select date:</label>
+                        <input type="date" id="datepicker" class="orange-input">
+                    </div>
+                    <div>
+                        <label>Select time:</label>
+                        <select id="timepicker" class="orange-input">
+                            <option value="07.00">07:00 AM</option>
+                            <option value="07.30">07:30 AM</option>
+                            <option value="08.00">08:00 AM</option>
+                            <option value="08.30">08:30 AM</option>
+                            <option value="09.00">09:00 AM</option>
+                            <option value="09.30">09:30 AM</option>
+                            <option value="10.00">10:00 AM</option>
+                            <option value="10.30">10:30 AM</option>
+                            <option value="11.00">11:00 AM</option>
+                            <option value="11.30">11:30 AM</option>
+                            <option value="12.00">12:00 PM</option>
+                            <option value="12.30">12:30 PM</option>
+                            <option value="13.00">1:00 PM</option>
+                            <option value="13.30">1:30 PM</option>
+                            <option value="14.00">2:00 PM</option>
+                            <option value="14.30">2:30 PM</option>
+                            <option value="15.00">3:00 PM</option>
+                            <option value="15.30">3:30 PM</option>
+                            <option value="16.00">4:00 PM</option>
+                            <option value="16.30">4:30 PM</option>
+                            <option value="17.00">5:00 PM</option>
+                            <option value="17.30">5:30 PM</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="button" id="closeBookApt" class="btn gray-btn">Close</button>
+                        <button type="button" id="bookApt" class="btn orange-btn">Book Appointment</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="cancelAppointmentContainer" style="display: none">
+                <h1 class="title">Cancelling an Appointment</h1>
+                <div id="cancelContainer" class="grid-container">
+
+                </div>
+            </div>
+
+            <div id="viewAppointmentsContainer" style="display: none;">
+                <h1 class="title">Viewing Appointments</h1>
+                <div class="filter">
+                    <button type="button" id="allApt" class="active">All</button>
+                    <button type="button" id="pendingApt">Pending</button>
+                    <button type="button" id="confirmedApt">Confirmed</button>
+                    <button type="button" id="completedApt">Completed</button>
+                    <button type="button" id="cancelledApt">Cancelled</button>
+                </div>
+                <div id="appointmentsContainer" class="grid-container">
+                </div>
+            </div>
+        </main>
+    </div>
+    <!--Content-->
+
+    <!--Scripts-->
+    <script src="Scripts/sidenavAndProfile.js"></script>
+    <script src="Scripts/date-time.js"></script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+        import { getDatabase, ref, onValue, set, child, update } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const getSignOut = document.getElementById("signOut");
+        const getMobileSignOut = document.getElementById("mobileSignOut");
+
+        // Check if the user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in with uid: " + user.uid);
+                document.getElementById("welcomeName").innerHTML = "Welcome, " + user.displayName + "!"; // Assign to welcome section
+                document.getElementById("displayName").innerHTML = user.displayName; // Assign to user profile section
+                document.getElementById("userEmail").innerHTML = user.email; // Assign to user profile section
+
+                document.getElementById("mobileWelcomeName").innerHTML = user.displayName; // Assign to mobile welcome section
+                document.getElementById("mobileDisplayName").innerHTML = user.displayName; // Assign to mobile display name
+                document.getElementById("mobileUserEmail").innerHTML = user.email; // Assign to mobile user profile section
+
+                // Book Appointment
+                bookAptBtn.addEventListener("click", (e) => {
+                    document.getElementById("bookAppointmentContainer").style.display = "block";
+                    document.getElementById("cancelAppointmentContainer").style.display = "none";
+                    document.getElementById("viewAppointmentsContainer").style.display = "none";
+                    // Gets all appointments
+                    const getAppointments = ref(database, 'appointments/');
+                    var counter = 1;
+                    onValue(getAppointments, (snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                            counter++;
+                            document.getElementById("aptID").innerHTML = "AHApt" + counter;
+
+                            // For validation
+                            const childData = childSnapshot.val();
+                            const appointments = Object.keys(childData).map(key => childData[key])
+                            currentTimeandDateAppointment.push(...appointments);
+                        });
+                    }, {
+                        onlyOnce: true
+                    });
+                    document.getElementById("aptID").innerHTML = "AHApt" + counter;
+
+                    // Gets the services from the database and put them into the drop down list
+                    const getServices = ref(database, 'services/');
+                    const getServicesDropdown = document.getElementById("servicesDropdown");
+                    onValue(getServices, (snapshot) => {
+                        getServicesDropdown.innerHTML = "";
+                        snapshot.forEach((childSnapshot) => {
+                            const data = childSnapshot.val();
+                            const row = "<option id='" + data.serviceName + "' value='" + data.servicePrice + "'>" + data.serviceName + "</option>";
+                            getServicesDropdown.innerHTML += row;
+                        });
+                    }, {
+                        onlyOnce: true
+                    });
+
+                    // Gets the veterinarians from the database and put them into the drop down list
+                    const getVets = ref(database, 'veterinarian_account/');
+                    const getVetsDropdown = document.getElementById("vetsDropdown");
+                    onValue(getVets, (snapshot) => {
+                        getVetsDropdown.innerHTML = "";
+                        snapshot.forEach((childSnapshot) => {
+                            const data = childSnapshot.val();
+                            const row = "<option value='" + data.doctorName + "'>" + data.doctorName + "</option>";
+                            getVetsDropdown.innerHTML += row;
+                        });
+                    }, {
+                        onlyOnce: true
+                    });
+
+                    // Gets the added pets of the customer
+                    const getCustomerPets = ref(database, 'customer_account/' + user.uid + '/pets/');
+                    const getPetDropdown = document.getElementById("petDropdown");
+                    var customerPets = []; // Stores customer pets
+                    var arrayCounter = 0;
+                    onValue(getCustomerPets, (snapshot) => {
+                        getPetDropdown.innerHTML = "";
+                        snapshot.forEach((childSnapshot) => {
+                            const data = childSnapshot.val();
+                            const row = "<option value='" + arrayCounter + "'>" + data.petName + "</option>";
+                            getPetDropdown.innerHTML += row;
+                            customerPets[arrayCounter] = data;
+                            arrayCounter++;
+                            document.getElementById("petName").value = customerPets[petDropdown.value].petName;
+                            document.getElementById("petType").value = customerPets[petDropdown.value].petType;
+                            document.getElementById("petBreed").value = customerPets[petDropdown.value].petBreed;
+                            document.getElementById("petSex").value = customerPets[petDropdown.value].petSex;
+                            document.getElementById("petBirth").value = customerPets[petDropdown.value].petBirth;
+                        });
+                    }, {
+                        onlyOnce: true
+                    });
+
+                    // Autofill pet info stored in customerPets array
+                    petDropdown.addEventListener("change", () => {
+                        document.getElementById("petName").value = customerPets[petDropdown.value].petName;
+                        document.getElementById("petType").value = customerPets[petDropdown.value].petType;
+                        document.getElementById("petBreed").value = customerPets[petDropdown.value].petBreed;
+                        document.getElementById("petSex").value = customerPets[petDropdown.value].petSex;
+                        document.getElementById("petBirth").value = customerPets[petDropdown.value].petBirth;
+                    });
+
+                    // Validation
+                    const currentTimeandDateAppointment = []
+                    // get all appointments
+                    const getAllAppointments = ref(database, 'appointments/');
+                    onValue(getAllAppointments, (snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                            const childData = childSnapshot.val();
+                            currentTimeandDateAppointment.push(childData);
+                        });
+                    }, {
+                        onlyOnce: true
+                    });
+
+                    // Save appointment data to database (With validation)
+                    bookApt.addEventListener("click", (e) => {
+                        var getServicesDropdown = document.getElementById("servicesDropdown");
+
+                        var aptID = document.getElementById("aptID").innerHTML;
+                        var ownername = document.getElementById("ownername").value;
+                        var servicename = getServicesDropdown.options[getServicesDropdown.selectedIndex].text;
+                        var serviceprice = getServicesDropdown.value;
+                        var vet = document.getElementById("vetsDropdown").value;
+                        var pet = document.getElementById("petName").value;
+                        var date = document.getElementById("datepicker").value;
+                        var time = document.getElementById("timepicker").value;
+
+                        // Validation
+                        let dateCount = 0
+                        currentTimeandDateAppointment.forEach(({ date: existingDate, time: existingTime }) => {
+                            if (existingDate === date && existingTime === time) {
+                                dateCount++
+                            }
+                        })
+
+                        console.log(dateCount);
+
+                        // Bug: maraming beses nag aalert pag maraming beses nag appointment ng hindi nag rerefresh
+                        // Ginawa ko muna refresh para di mahalata 
+                        if (ownername != "" && serviceprice != "Select a Service" && vet != "Select a Vet" && date != "") {
+                            if (dateCount >= 1) {
+                                document.getElementById("errorContainer").style.display = "flex";
+                                document.getElementById("errorMessage").innerHTML = "This appointment time is fully booked. Please pick another timeslot.";
+                                setTimeout(function () {
+                                    document.getElementById("errorContainer").style.display = "none";
+                                }, 3500);
+                            } else {
+                                set(ref(database, 'appointments/' + aptID), {
+                                    customerID: user.uid,
+                                    ownername: ownername,
+                                    petname: pet,
+                                    services: servicename,
+                                    veterinarian: vet,
+                                    date: date,
+                                    time: time,
+                                    status: "Pending",
+                                    paymentstatus: "Pending",
+                                    amount: serviceprice
+                                })
+                                    .then(() => {
+                                        const newData = {
+                                            customerID: user.uid,
+                                            ownername: ownername,
+                                            petname: pet,
+                                            services: servicename,
+                                            veterinarian: vet,
+                                            date: date,
+                                            time: time,
+                                            status: "Pending",
+                                            paymentstatus: "Pending",
+                                            amount: serviceprice
+                                        }
+                                        currentTimeandDateAppointment.push(newData);
+                                        document.getElementById("successContainer").style.display = "flex";
+                                        document.getElementById("successMessage").innerHTML = "Appointment booked. Please pay the appointment fee to be accomodated.";
+                                        setTimeout(function () {
+                                            document.getElementById("successContainer").style.display = "none";
+                                        }, 3500);
+                                        document.getElementById("bookAppointmentContainer").style.display = "none";
+                                    })
+                                    .catch((error) => {
+                                        document.getElementById("errorContainer").style.display = "flex";
+                                        document.getElementById("errorMessage").innerHTML = error;
+                                        setTimeout(function () {
+                                            document.getElementById("errorContainer").style.display = "none";
+                                        }, 3500);
+                                    });
+                            }
+                        }
+                        else {
+                            document.getElementById("errorContainer").style.display = "flex";
+                            document.getElementById("errorMessage").innerHTML = "Please finish filling up the form to book your appointment.";
+                            setTimeout(function () {
+                                document.getElementById("errorContainer").style.display = "none";
+                            }, 3500);
+                        }
+                    })
+
+                    // Close book appointment form
+                    closeBookApt.addEventListener("click", (e) => {
+                        document.getElementById("bookAppointmentContainer").style.display = "none";
+                    });
+                });
+
+                // Cancel appointment
+                cancelAptBtn.addEventListener("click", (e) => {
+                    document.getElementById("bookAppointmentContainer").style.display = "none";
+                    document.getElementById("cancelAppointmentContainer").style.display = "block";
+                    document.getElementById("viewAppointmentsContainer").style.display = "none";
+
+                    const getAppointments = ref(database, 'appointments/');
+                    const getCancelContainer = document.getElementById("cancelContainer");
+
+                    getCancelContainer.innerHTML = "";
+                    onValue(getAppointments, (snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                            const key = childSnapshot.key;
+                            const data = childSnapshot.val();
+                            if (data.customerID == user.uid && data.status == "Pending") {
+                                const row = "<div class='grid-item'>"
+                                    + "<div class='pet-details'>"
+                                    + "<h1 class='title'>" + data.services + " for " + data.petname + "</h1></div>"
+                                    + "<div class='vet-details'>"
+                                    + "<div>"
+                                    + "<h1>" + data.veterinarian + "</h1>"
+                                    + "<h2>" + "Vet Position" + "</h2>"
+                                    + "</div>"
+                                    + "<i class='fa-solid fa-user-doctor fa-fw'></i>"
+                                    + "</div>"
+                                    + "<div class='appointment-details'>"
+                                    + "<div>"
+                                    + "<i class='fa-regular fa-clock fa-fw'></i>"
+                                    + "<h1>" + data.time + "</h1>"
+                                    + "</div>"
+                                    + "<div>"
+                                    + "<i class='fa-regular fa-calendar fa-fw'></i>"
+                                    + "<h1>" + data.date + "</h1>"
+                                    + "</div>"
+                                    + "<div>"
+                                    + "<i class='fa-solid fa-circle fa-fw'></i>"
+                                    + "<h1>" + data.status + "</h1>"
+                                    + "</div>"
+                                    + "<div>"
+                                    + "<i class='fa-solid fa-money-bill fa-fw'></i>"
+                                    + "<h1>" + data.paymentstatus + "</h1>"
+                                    + "</div>"
+                                    + "</div>"
+                                    + "<button type='button' id='" + key + "' class='btn gray-btn cancel'>Cancel</button>";
+                                + "</div>"
+                                getCancelContainer.innerHTML += row;
+                            }
+                        });
+                        // Cancel button functionality (Can be used in filters(?))
+                        const allCancelButtons = document.getElementsByClassName("cancel");
+                        for (let i = 0; i < allCancelButtons.length; i++) {
+                            allCancelButtons[i].addEventListener("click", (e) => {
+                                const btnAptID = allCancelButtons[i].getAttribute("id");
+                                onValue(getAppointments, (snapshot) => {
+                                    snapshot.forEach((childSnapshot) => {
+                                        const key = childSnapshot.key;
+                                        const data = childSnapshot.val();
+                                        if (key == btnAptID) {
+                                            if (data.paymentstatus == "Paid") {
+                                                if (confirm("This appointment is already paid for. Are you sure?") == true) {
+                                                    update(ref(database, "appointments/" + btnAptID), {
+                                                        status: "Cancelled",
+                                                        paymentstatus: "Refunded"
+                                                    })
+                                                        .then(() => {
+                                                            alert("Appointment has been cancelled and payment has been refunded.");
+                                                            window.location.reload("appointments.html")
+                                                        })
+                                                        .catch((error) => {
+                                                            alert(error);
+                                                        });
+                                                }
+                                            }
+                                            else {
+                                                update(ref(database, "appointments/" + btnAptID), {
+                                                    status: "Cancelled",
+                                                    paymentstatus: "Cancelled"
+                                                })
+                                                    .then(() => {
+                                                        alert("Appointment has been cancelled.");
+                                                        window.location.reload("appointments.html")
+                                                    })
+                                                    .catch((error) => {
+                                                        alert(error);
+                                                    });
+                                            }
+                                        }
+                                    });
+                                }, {
+                                    onlyOnce: true
+                                });
+                            })
+                        }
+                    }
+                        , {
+                            onlyOnce: true
+                        });
+                });
+
+                // View Appointment
+                // (Bug: Nadodoble yung sa all appointments pag pinindot yung viewAptBtn
+                // tapos allAptBtn tapos viewAptBtn tapos allAptBtn)
+                // Ayos na ata pag nilagyan ng pang clear sa loob ng onValue sheeeeeesh
+                viewAptBtn.addEventListener("click", (e) => {
+                    document.getElementById("bookAppointmentContainer").style.display = "none";
+                    document.getElementById("cancelAppointmentContainer").style.display = "none";
+                    document.getElementById("viewAppointmentsContainer").style.display = "block";
+                    allApt.classList.add("active");
+                    pendingApt.classList.remove("active");
+                    confirmedApt.classList.remove("active");
+                    cancelledApt.classList.remove("active");
+                    const getAppointments = ref(database, 'appointments/');
+                    const getAppointmentsContainer = document.getElementById("appointmentsContainer");
+                    getAppointmentsContainer.innerHTML = "";
+                    onValue(getAppointments, (snapshot) => {
+                        getAppointmentsContainer.innerHTML = "";
+                        snapshot.forEach((childSnapshot) => {
+                            const data = childSnapshot.val();
+                            if (data.customerID == user.uid) {
+                                const row =
+                                    "<div class='grid-item'>"
+                                    + "<div class='pet-details'>"
+                                    + "<h1 class='title'>" + data.services + " for " + data.petname + "</h1>"
+                                    + "</div>"
+                                    + "<div class='vet-details'>"
+                                    + "<div>"
+                                    + "<h1>" + data.veterinarian + "</h1>"
+                                    + "<h2>" + "Vet Position" + "</h2>"
+                                    + "</div>"
+                                    + "<i class='fa-solid fa-user-doctor fa-fw'></i>"
+                                    + "</div>"
+                                    + "<div class='appointment-details'>"
+                                    + "<div>"
+                                    + "<i class='fa-regular fa-clock fa-fw'></i>"
+                                    + "<h1>" + data.time + "</h1>"
+                                    + "</div>"
+                                    + "<div>"
+                                    + "<i class='fa-regular fa-calendar fa-fw'></i>"
+                                    + "<h1>" + data.date + "</h1>"
+                                    + "</div>"
+                                    + "<div>"
+                                    + "<i class='fa-solid fa-circle fa-fw'></i>"
+                                    + "<h1>" + data.status + "</h1>"
+                                    + "</div>"
+                                    + "<div>"
+                                    + "<i class='fa-solid fa-money-bill fa-fw'></i>"
+                                    + "<h1>" + data.paymentstatus + "</h1>"
+                                    + "</div>"
+                                    + "</div>"
+                                    + "</div>"
+                                getAppointmentsContainer.innerHTML += row;
+                            }
+                        });
+                    }, {
+                        onlyOnce: true
+                    });
+
+                    // Filters
+                    allApt.addEventListener("click", (e) => {
+                        allApt.classList.add("active");
+                        pendingApt.classList.remove("active");
+                        confirmedApt.classList.remove("active");
+                        completedApt.classList.remove("active");
+                        cancelledApt.classList.remove("active");
+                        getAppointmentsContainer.innerHTML = "";
+                        onValue(getAppointments, (snapshot) => {
+                            getAppointmentsContainer.innerHTML = "";
+                            snapshot.forEach((childSnapshot) => {
+                                const data = childSnapshot.val();
+                                if (data.customerID == user.uid) {
+                                    const row =
+                                        "<div class='grid-item'>"
+                                        + "<div class='pet-details'>"
+                                        + "<h1 class='title'>" + data.services + " for " + data.petname + "</h1>"
+                                        + "</div>"
+                                        + "<div class='vet-details'>"
+                                        + "<div>"
+                                        + "<h1>" + data.veterinarian + "</h1>"
+                                        + "<h2>" + "Vet Position" + "</h2>"
+                                        + "</div>"
+                                        + "<i class='fa-solid fa-user-doctor fa-fw'></i>"
+                                        + "</div>"
+                                        + "<div class='appointment-details'>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-clock fa-fw'></i>"
+                                        + "<h1>" + data.time + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-calendar fa-fw'></i>"
+                                        + "<h1>" + data.date + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-circle fa-fw'></i>"
+                                        + "<h1>" + data.status + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-money-bill fa-fw'></i>"
+                                        + "<h1>" + data.paymentstatus + "</h1>"
+                                        + "</div>"
+                                        + "</div>"
+                                        + "</div>"
+                                    getAppointmentsContainer.innerHTML += row;
+                                }
+                            });
+                        }, {
+                            onlyOnce: true
+                        });
+                    });
+
+                    pendingApt.addEventListener("click", (e) => {
+                        allApt.classList.remove("active");
+                        pendingApt.classList.add("active");
+                        confirmedApt.classList.remove("active");
+                        completedApt.classList.remove("active");
+                        cancelledApt.classList.remove("active");
+                        getAppointmentsContainer.innerHTML = "";
+                        onValue(getAppointments, (snapshot) => {
+                            getAppointmentsContainer.innerHTML = "";
+                            snapshot.forEach((childSnapshot) => {
+                                const data = childSnapshot.val();
+                                if (data.customerID == user.uid && data.status == "Pending") {
+                                    const row =
+                                        "<div class='grid-item'>"
+                                        + "<div class='pet-details'>"
+                                        + "<h1 class='title'>" + data.services + " for " + data.petname + "</h1>"
+                                        + "</div>"
+                                        + "<div class='vet-details'>"
+                                        + "<div>"
+                                        + "<h1>" + data.veterinarian + "</h1>"
+                                        + "<h2>" + "Vet Position" + "</h2>"
+                                        + "</div>"
+                                        + "<i class='fa-solid fa-user-doctor fa-fw'></i>"
+                                        + "</div>"
+                                        + "<div class='appointment-details'>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-clock fa-fw'></i>"
+                                        + "<h1>" + data.time + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-calendar fa-fw'></i>"
+                                        + "<h1>" + data.date + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-circle fa-fw'></i>"
+                                        + "<h1>" + data.status + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-money-bill fa-fw'></i>"
+                                        + "<h1>" + data.paymentstatus + "</h1>"
+                                        + "</div>"
+                                        + "</div>"
+                                        + "</div>"
+                                    getAppointmentsContainer.innerHTML += row;
+                                }
+                            });
+                        }, {
+                            onlyOnce: true
+                        });
+                    });
+
+                    confirmedApt.addEventListener("click", (e) => {
+                        allApt.classList.remove("active");
+                        pendingApt.classList.remove("active");
+                        confirmedApt.classList.add("active");
+                        completedApt.classList.remove("active");
+                        cancelledApt.classList.remove("active");
+                        getAppointmentsContainer.innerHTML = "";
+                        onValue(getAppointments, (snapshot) => {
+                            getAppointmentsContainer.innerHTML = "";
+                            snapshot.forEach((childSnapshot) => {
+                                const data = childSnapshot.val();
+                                if (data.customerID == user.uid && data.status == "Confirmed") {
+                                    const row =
+                                        "<div class='grid-item'>"
+                                        + "<div class='pet-details'>"
+                                        + "<h1 class='title'>" + data.services + " for " + data.petname + "</h1>"
+                                        + "</div>"
+                                        + "<div class='vet-details'>"
+                                        + "<div>"
+                                        + "<h1>" + data.veterinarian + "</h1>"
+                                        + "<h2>" + "Vet Position" + "</h2>"
+                                        + "</div>"
+                                        + "<i class='fa-solid fa-user-doctor fa-fw'></i>"
+                                        + "</div>"
+                                        + "<div class='appointment-details'>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-clock fa-fw'></i>"
+                                        + "<h1>" + data.time + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-calendar fa-fw'></i>"
+                                        + "<h1>" + data.date + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-circle fa-fw'></i>"
+                                        + "<h1>" + data.status + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-money-bill fa-fw'></i>"
+                                        + "<h1>" + data.paymentstatus + "</h1>"
+                                        + "</div>"
+                                        + "</div>"
+                                        + "</div>"
+                                    getAppointmentsContainer.innerHTML += row;
+                                }
+                            });
+                        }, {
+                            onlyOnce: true
+                        });
+                    });
+
+                    completedApt.addEventListener("click", (e) => {
+                        allApt.classList.remove("active");
+                        pendingApt.classList.remove("active");
+                        confirmedApt.classList.remove("active");
+                        completedApt.classList.add("active");
+                        cancelledApt.classList.remove("active");
+                        getAppointmentsContainer.innerHTML = "";
+                        onValue(getAppointments, (snapshot) => {
+                            getAppointmentsContainer.innerHTML = "";
+                            snapshot.forEach((childSnapshot) => {
+                                const data = childSnapshot.val();
+                                if (data.customerID == user.uid && data.status == "Completed") {
+                                    const row =
+                                        "<div class='grid-item'>"
+                                        + "<div class='pet-details'>"
+                                        + "<h1 class='title'>" + data.services + " for " + data.petname + "</h1>"
+                                        + "</div>"
+                                        + "<div class='vet-details'>"
+                                        + "<div>"
+                                        + "<h1>" + data.veterinarian + "</h1>"
+                                        + "<h2>" + "Vet Position" + "</h2>"
+                                        + "</div>"
+                                        + "<i class='fa-solid fa-user-doctor fa-fw'></i>"
+                                        + "</div>"
+                                        + "<div class='appointment-details'>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-clock fa-fw'></i>"
+                                        + "<h1>" + data.time + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-calendar fa-fw'></i>"
+                                        + "<h1>" + data.date + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-circle fa-fw'></i>"
+                                        + "<h1>" + data.status + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-money-bill fa-fw'></i>"
+                                        + "<h1>" + data.paymentstatus + "</h1>"
+                                        + "</div>"
+                                        + "</div>"
+                                        + "</div>"
+                                    getAppointmentsContainer.innerHTML += row;
+                                }
+                            });
+                        }, {
+                            onlyOnce: true
+                        });
+                    });
+
+                    cancelledApt.addEventListener("click", (e) => {
+                        allApt.classList.remove("active");
+                        pendingApt.classList.remove("active");
+                        confirmedApt.classList.remove("active");
+                        completedApt.classList.remove("active");
+                        cancelledApt.classList.add("active");
+                        getAppointmentsContainer.innerHTML = "";
+                        onValue(getAppointments, (snapshot) => {
+                            getAppointmentsContainer.innerHTML = "";
+                            snapshot.forEach((childSnapshot) => {
+                                const data = childSnapshot.val();
+                                if (data.customerID == user.uid && data.status == "Cancelled") {
+                                    const row =
+                                        "<div class='grid-item'>"
+                                        + "<div class='pet-details'>"
+                                        + "<h1 class='title'>" + data.services + " for " + data.petname + "</h1>"
+                                        + "</div>"
+                                        + "<div class='vet-details'>"
+                                        + "<div>"
+                                        + "<h1>" + data.veterinarian + "</h1>"
+                                        + "<h2>" + "Vet Position" + "</h2>"
+                                        + "</div>"
+                                        + "<i class='fa-solid fa-user-doctor fa-fw'></i>"
+                                        + "</div>"
+                                        + "<div class='appointment-details'>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-clock fa-fw'></i>"
+                                        + "<h1>" + data.time + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-regular fa-calendar fa-fw'></i>"
+                                        + "<h1>" + data.date + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-circle fa-fw'></i>"
+                                        + "<h1>" + data.status + "</h1>"
+                                        + "</div>"
+                                        + "<div>"
+                                        + "<i class='fa-solid fa-money-bill fa-fw'></i>"
+                                        + "<h1>" + data.paymentstatus + "</h1>"
+                                        + "</div>"
+                                        + "</div>"
+                                        + "</div>"
+                                    getAppointmentsContainer.innerHTML += row;
+                                }
+                            });
+                        }, {
+                            onlyOnce: true
+                        });
+                    });
+
+                });
+            }
+        });
+
+        // Sign out web user
+        getSignOut.addEventListener('click', (e) => {
+            console.log("Signing out...");
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    console.log("An error occured while signing out.");
+                });
+        });
+
+        // Sign out mobile user
+        getMobileSignOut.addEventListener('click', (e) => {
+            console.log("Signing out...");
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    console.log("An error occured while signing out.");
+                });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

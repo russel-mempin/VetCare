@@ -1,0 +1,97 @@
+#appointmentsContainer {
+    margin: 1rem 0;
+}
+
+#appointmentsContainer .grid-item {
+    background-color: #ffffff;
+    border-radius: 7px;
+    padding: 1rem 1rem 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#appointmentsContainer .grid-item button {
+    margin-top: 1rem;
+}
+
+.pet-details .title {
+    margin-bottom: 0.5rem;
+}
+
+.vet-details {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    margin: 0.5rem 0;
+}
+
+.vet-details div>* {
+    margin: 0.5rem 0;
+}
+
+.vet-details div h2 {
+    font-size: 0.8em;
+    color: #7e7e7e;
+}
+
+.vet-details i {
+    background-color: #ffa500;
+    color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+}
+
+.appointment-details {
+    border-top: 1px solid #dadada;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.appointment-details div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.appointment-details div i,
+.appointment-details div h1 {
+    font-size: 0.8em;
+    margin: 0 0.25em;
+}
+
+.appointment-details div:first-of-type i {
+    margin: 0 0.25rem 0 0;
+}
+
+.appointment-details div:first-of-type h1 {
+    margin: 0 0 0 0.25rem;
+}
+
+.appointment-details div:last-of-type i {
+    margin: 0 0.25rem 0 0;
+}
+
+.appointment-details div:last-of-type h1 {
+    margin: 0 0 0 0.25rem;
+}
+
+#paymentContainer {
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width:961px) {
+
+    #appointmentsContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #appointmentsContainer .grid-item .title {
+        text-align: center;
+        font-size: 1.3em;
+    }
+    
+}

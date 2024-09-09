@@ -1,0 +1,29 @@
+#scheduleListContainer {
+    margin: 1rem 0;
+}
+
+#scheduleListContainer .grid-item {
+    background-color: #ffffff;
+    border-radius: 7px;
+    padding: 1rem;
+}
+
+#scheduleListContainer .grid-item div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#scheduleListContainer .grid-item > * {
+    margin: 0.5rem 0;
+}
+
+.button-row button {
+    flex-basis: 45%;
+}
+
+@media (min-width:961px) {
+    #scheduleListContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

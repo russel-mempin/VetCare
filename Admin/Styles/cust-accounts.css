@@ -1,0 +1,117 @@
+#content {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#content h1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 2em;
+    margin: 0;
+    color: #09101d;
+}
+
+.search-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.search-row > * {
+    font-family: 'Rubik', sans-serif;
+}
+
+.search-row p {
+    font-size: 1.5em;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.search-row select {
+    margin: 0 10px;
+    padding: 10px 5px;
+    border-radius: 10px;
+    border: 1px solid #ffa500
+}
+
+.search-btn {
+    display: flex;
+}
+
+.search-btn input {
+    padding: 10px 15px;
+    border-radius: 20px 0 0 20px;
+    border: 1px solid #ffa500;
+    border-right: none;
+}
+
+.search-btn button {
+    background-color: #ffa500;
+    border: 1px solid #ffa500;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+#formOverlayBtn, #formOverlayBtn:hover {
+    background-color: #ffa500;
+    border: 1px solid #ffa500;
+    color: #ffffff;
+    border-radius: 7px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#formOverlayBtn:hover {
+    background-color: #ffffff;
+    border: 1px solid #ffa500;
+    color: #09101d;
+    transition: all 0.2s;
+}
+
+.cust-accounts-container table {
+    width: 100%;
+    /*Horizontaly expand table*/
+    font-family: 'Rubik', sans-serif;
+}
+
+.cust-accounts-container table th {
+    border-bottom: 2px solid #f2f4f5;
+    padding: 15px 10px;
+    text-align: left;
+    color: #8e93a0;
+}
+
+.cust-accounts-container table tr {
+    border-bottom: 2px solid #f2f4f5;
+    color: #09101d;
+}
+
+.cust-accounts-container table td {
+    padding: 20px 10px;
+}
+
+.cust-accounts-container table td button {
+    background-color: #ffa500;
+    border: 1px solid #ffa500;
+    border-radius: 50%;
+    color: white;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cust-accounts-container table td button:hover {
+    background-color: #ffffff;
+    border: 1px solid #ffa500;
+    border-radius: 50%;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s;
+}

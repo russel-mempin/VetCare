@@ -1,0 +1,73 @@
+#filtersContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+}
+
+#cardsAppointmentContainer .grid-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+#cardsAppointmentContainer .grid-item div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+#cardsAppointmentContainer .grid-item div h1 {
+    color: #989ba3;
+}
+
+#cardsAppointmentContainer .grid-item div p {
+    font-weight: 600
+}
+
+#bookAppointmentContainer {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+#bookAppointmentContainer form {
+    margin: 1rem 0 0 0;
+    display: flex;
+    flex-direction: column;    
+}
+
+#bookAppointmentContainer form > * {
+    margin: 0.5rem 0;
+}
+
+#bookAppointmentContainer form div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    align-items: center;
+}
+
+#bookAppointmentContainer form div:nth-of-type(2) {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+#aptID {
+    justify-self: flex-end;
+}
+
+@media (min-width:961px) {
+    #cardsAppointmentContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #filtersContainer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #bookAppointmentContainer form div:nth-of-type(2) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

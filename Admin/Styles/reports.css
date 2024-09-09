@@ -1,0 +1,158 @@
+#errorContainer, #successContainer {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 70%;
+    font-size: 0.9em;
+    z-index: 999;
+    bottom: 1%;
+    background-color: #ffffff;
+    border: 1px solid #ffa500;
+    border-radius: 7px;
+    padding: 0.5rem;
+}
+
+#errorContainer img, #successContainer img {
+    width: 50px;
+    margin-right: 0.5rem;
+}
+
+#addForm div:nth-of-type(2) {
+    align-items: center;
+}
+
+#transactionsContainer {
+    margin: 1rem 0;
+}
+
+#transactionsContainer .grid-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+#transactionsContainer .grid-item div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+#transactionsContainer .grid-item div h1 {
+    color: #8d8d8d;
+}
+
+#transactionsContainer .grid-item div h2 {
+    font-weight: 600;
+}
+
+#transactionsContainer .grid-item div:first-of-type {
+    margin-top: 0;
+}
+
+#transactionsContainer .grid-item div:last-of-type {
+    margin-bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+#invisibleTransactionsContainer {
+    background-color: #ffffff;
+    display: none;
+}
+
+.print-table {
+    background-color: #ffffff;
+}
+
+#invisibleTransactionsContainer thead, .print-table thead {
+    background-color: #ffa500;
+}
+
+#invisibleTransactionsContainer th, .print-table th {
+    padding: 0.5rem;
+}
+
+#invisibleTransactionsContainer td, .print-table td {
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+#invisibleTransactionsContainer tbody tr:nth-of-type(even) {
+    background-color: #d6d6d6;
+}
+
+.onebutton {
+    grid-template-columns: 1fr !important; 
+}
+
+#invisibleReceiptsContainer {
+    display: none;
+}
+
+.receipt-generator {
+    background-color: #ffffff;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+#clinicDetails  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+#clinicDetails h1:first-of-type {
+    font-weight: 600;
+}
+
+#clinicDetails img {
+    width: 50px;
+}
+
+.receipt-transaction-details {
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.receipt-transaction-details div {
+    display: flex;
+}
+
+.receipt-transaction-details div h1 {
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+#signatureContainer {
+    border-top: 1px solid #8d8d8d;
+    margin-top: 3rem;
+    padding-top: 0.5rem;
+    text-align: center;
+}
+
+#nextAptContainer {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+@media (min-width:961px) {
+
+    #errorContainer, #successContainer {
+        width: 19%;
+    }
+
+    #transactionsContainer {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0;
+    }
+    
+}

@@ -1,0 +1,55 @@
+#vetAccountsContainer {
+    margin: 1rem 0;
+}
+
+#vetAccountsContainer .grid-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+#vetAccountsContainer .grid-item div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#vetAccountsContainer .grid-item h1 {
+    color: #989ba3;
+}
+
+#vetAccountsContainer .grid-item p {
+    font-weight: 600;
+}
+
+#vetIDContainer {
+    background-color: #ffffff;
+    border: 1px solid #ffa500;
+    border-radius: 5px;
+    padding: 0.5rem 0.3rem;
+    font-size: 0.7em;
+}
+
+#vetID {
+    text-align: right;
+}
+
+#addFormContainer form div div label{
+    font-size: 0.7em;
+}
+
+@media (min-width:961px) {
+    #vetAccountsContainer {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0;
+    }
+
+    #vetAccountsContainer .grid-item div {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem 0;
+    }
+
+    #vetIDContainer, #addFormContainer form div div label {
+        font-size: 1em;
+    }
+}

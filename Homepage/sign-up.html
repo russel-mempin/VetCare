@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCare | Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="Images/logoonly.png">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/sign-up.css">
+</head>
+
+<body>
+    <header class="flex-container-justifybetween-aligncenter">
+        <div class="flex-container-justifybetween-aligncenter">
+            <img src="Images/logoonly.png" alt="VetCare Logo" style="width: 40px">
+            <h1 class="bold">VetCare</h1>
+        </div>
+        <div>
+            <a href="account-type.html" class="button">Login</a>
+            <a href="sign-up.html" class="button">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <form class="grid-container">
+            <div>
+                <div class="form-row">
+                    <label for="ownername">Owner's Name*</label>
+                    <input type="text" id="ownername" name="ownername" class="orange-input" />
+                </div>
+
+                <div class="form-row">
+                    <label for="contact">Contact No.*</label>
+                    <input type="tel" id="contact" name="contact" class="orange-input"
+                        onkeypress="return onlyNumberKey(event)" pattern="[0-9]{11}" />
+                </div>
+
+                <div class="form-row">
+                    <label for="telephone">Telephone No.</label>
+                    <input type="tel" id="telephone" name="telephone" class="orange-input"
+                        onkeypress="return onlyNumberKey(event)" pattern="[0-9]{11}" />
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Email*</label>
+                    <input type="text" id="email" name="email" class="orange-input" />
+                </div>
+
+                <div class="form-row">
+                    <label for="password">Password*</label>
+                    <input type="password" id="password" name="password" class="orange-input" />
+                </div class="form-row">
+
+                <div class="form-row">
+                    <label for="confirmpword">Confirm Password*</label>
+                    <input type="password" id="confirmpword" name="confirmpword" class="orange-input" />
+                </div>
+
+                <div class="form-row">
+                    <label for="address">Home Address*</label>
+                    <input type="text" id="address" name="address" class="orange-input" />
+                </div>
+            </div>
+            <div class="grid-item">
+                <h1 class="header">Register your information</h1>
+                <div id="termsContainer">
+                    <input type="checkbox" name="terms" id="terms" />
+                    <label for="terms">I agree to the <a href="terms.html">Terms and Conditions</a></label>
+                </div>
+                <button type="button" id="submitData" class="button">Register Account</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="Scripts/signup.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            updateProfile,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+        import { getDatabase, set, ref, update, onValue } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const database = getDatabase(app);
+
+        const getCustomerCount = ref(database, 'counters');
+        var customerCount;
+
+        submitData.addEventListener('click', (e) => {
+            /*Getting value from textboxes*/
+            var ownername = document.getElementById("ownername").value;
+            var address = document.getElementById("address").value;
+            var email = document.getElementById("email").value;
+            var contact = document.getElementById("contact").value;
+            var telephone = document.getElementById("telephone").value;
+            var password = document.getElementById("password").value;
+
+            if (password == document.getElementById('confirmpword').value && ownername != "" && address != ""
+                && email != "" && contact != "") {
+
+                onValue(getCustomerCount, (snapshot) => {
+                    snapshot.forEach((childSnapshot) => {
+                        const data = childSnapshot.val();
+                        console.log(data);
+                        customerCount = data;
+                        console.log(customerCount);
+                    });
+                }, {
+                    onlyOnce: true
+                });
+
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Signed in 
+                        const user = userCredential.user;
+                        console.log(user);
+                        customerCount++;
+                        // Update user auth profile
+                        updateProfile(auth.currentUser, {
+                            displayName: ownername,
+                            email: email
+                        }).then(() => {
+                            console.log("Successfully updated user auth profile.");
+                        }).catch((error) => {
+                            console.log("There was an error in updating user auth profile." + error);
+                        });
+
+                        // Inserting to database
+                        set(ref(database, 'customer_account/' + user.uid + '/' + 'customer_details/'), {
+                            customerID: user.uid,
+                            ownername: ownername,
+                            address: address,
+                            email: email,
+                            contact: contact,
+                            telephone: telephone,
+                            password: password
+                        })
+                            .then(() => {
+                                //Data saved successfully
+                                update(ref(database, 'counters'), {
+                                    customerCount: customerCount
+                                })
+                                window.location.href = "sign-up-success.html";
+                            })
+                            .catch((error) => {
+                                //Data saving failed
+                                alert("Failed to save your data to database.");
+                            });
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        alert("There is already an account with your credentials.");
+                    });
+            }
+            else {
+                alert("Please fill up the required items.");
+            }
+        });
+    </script>
+</body>
+
+</html>

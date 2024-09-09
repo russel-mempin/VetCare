@@ -1,0 +1,39 @@
+#servicesItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    margin: 0.5rem 0;
+    padding: 0.7rem 1rem;
+    border-radius: 7px;
+    font-size: 0.9em;
+}
+
+#servicesItem img {
+    width: 70px;
+}
+
+#servicesItem h1 {
+    font-weight: bold;
+}
+
+#servicesItem h2 {
+    color: #63c132;
+}
+
+@media (min-width:961px) {
+
+    #servicesContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    #servicesItem {
+        font-size: 1.3rem;
+    }
+
+    #servicesItem img {
+        width: 90px;
+    }
+}

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index | VetCare</title>
+    <link rel="icon" href="Images/logoonly.png">
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/index.css">
+</head>
+
+<body>
+    <!--Sidenav-->
+    <nav id="sideNav" class="sticky">
+        <div id="navHead">
+            <div class="flex-container-jcenter-acenter">
+                <img src="Images/logoonly.png" alt="VetCare Logo">
+                <h1>VetCare</h1>
+            </div>
+            <div id="mobileUserSection" class="flex-container-jcenter-acenter">
+                <p id="mobileWelcomeName">Display Name</p>
+                <button id="mobileProfileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="mobileProfileSettingsContainer" style="display: none;">
+                    <div id="mobileSettingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Customer</p>
+                            <a id="mobileSignOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="mobileUserDetails">
+                                <p id="mobileDisplayName">Display Name</p>
+                                <p id="mobileUserEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="index.html" class="active">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fa-solid fa-calendar-days fa-fw"></i>
+                        <p>Appointments</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="pet-records.html">
+                        <i class="fa-solid fa-book-medical fa-fw"></i>
+                        <p>Pets</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="transactions.html">
+                        <i class="fa-solid fa-receipt fa-fw"></i>
+                        <p>Transactions</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="services.html">
+                        <i class="fa-solid fa-paw fa-fw"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="vet-directory.html">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Vet Directory</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="account-profile.html">
+                        <i class="fa-solid fa-address-card fa-fw"></i>
+                        <p>Account</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="inbox.html">
+                        <i class="fa-solid fa-message fa-fw"></i>
+                        <p>Inbox</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <header>
+            <span onclick="toggleNav()">&#9776;</span>
+            <div>
+                <p id="welcomeName">User</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="webProfileSettingsContainer" style="display: none;">
+                    <div id="settingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Customer</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="userDetails">
+                                <p id="displayName">Display Name</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </header>
+        <main>
+            <div>
+                <h1 class="title">Upcoming Appointments</h1>
+                <div id="noAppointments" style="display: block;">
+                    <img src="Images/logoonly.png">
+                    <p>Loading appointments...</p>
+                </div>
+                <div id="appointmentsContainer" class="grid-container">
+                </div>
+            </div>
+        </main>
+    </div>
+    <!--Content-->
+
+    <!--Scripts-->
+    <script src="Scripts/sideNavAndProfile.js"></script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+        const getSignOut = document.getElementById("signOut");
+        const getMobileSignOut = document.getElementById("mobileSignOut");
+
+        // Check if the user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in with uid: " + user.uid);
+                document.getElementById("welcomeName").innerHTML = "Welcome, " + user.displayName + "!"; // Assign to welcome section
+                document.getElementById("displayName").innerHTML = user.displayName; // Assign to user profile section
+                document.getElementById("userEmail").innerHTML = user.email; // Assign to user profile section
+
+                document.getElementById("mobileWelcomeName").innerHTML = user.displayName; // Assign to mobile welcome section
+                document.getElementById("mobileDisplayName").innerHTML = user.displayName; // Assign to mobile display name
+                document.getElementById("mobileUserEmail").innerHTML = user.email; // Assign to mobile user profile section
+
+                const getAppointmentsContainer = document.getElementById("appointmentsContainer");
+                const getAppointments = ref(database, 'appointments/');
+                onValue(getAppointments, (snapshot) => {
+                    getAppointmentsContainer.innerHTML = "";
+                    snapshot.forEach((childSnapshot) => {
+                        const data = childSnapshot.val();
+                        if (data.customerID == user.uid && data.status == "Confirmed") {
+                            const row =
+                                "<div class='grid-item'>"
+                                + "<div class='pet-details'>"
+                                + "<h1 class='title'>" + data.services + " for " + data.petname + "</h1>"
+                                + "</div>"
+                                + "<div class='vet-details'>"
+                                + "<div>"
+                                + "<h1>" + data.veterinarian + "</h1>"
+                                + "<h2>" + "Vet Position" + "</h2>"
+                                + "</div>"
+                                + "<i class='fa-solid fa-user-doctor fa-fw'></i>"
+                                + "</div>"
+                                + "<div class='appointment-details'>"
+                                + "<div>"
+                                + "<i class='fa-regular fa-clock fa-fw'></i>"
+                                + "<h1>" + data.time + "</h1>"
+                                + "</div>"
+                                + "<div>"
+                                + "<i class='fa-regular fa-calendar fa-fw'></i>"
+                                + "<h1>" + data.date + "</h1>"
+                                + "</div>"
+                                + "<div>"
+                                + "<i class='fa-solid fa-circle fa-fw'></i>"
+                                + "<h1>" + data.status + "</h1>"
+                                + "</div>"
+                                + "<div>"
+                                + "<i class='fa-solid fa-money-bill fa-fw'></i>"
+                                + "<h1>" + data.paymentstatus + "</h1>"
+                                + "</div>"
+                                + "</div>"
+                                + "</div>"
+                            getAppointmentsContainer.innerHTML += row;
+                        }
+                        document.getElementById("noAppointments").style.display = "none";
+                    })
+                })
+            }
+
+            // Sign out user
+            getSignOut.addEventListener('click', (e) => {
+                signOut(auth).then(() => {
+                    window.location.href = "../Homepage/account-type.html"
+                })
+                    .catch((error) => {
+                        alert("An error occured while signing out.");
+                    });
+            });
+
+            // Sign out mobile user
+            getMobileSignOut.addEventListener('click', (e) => {
+                signOut(auth).then(() => {
+                    window.location.href = "../Homepage/account-type.html"
+                })
+                    .catch((error) => {
+                        alert("An error occured while signing out.");
+                    });
+            });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

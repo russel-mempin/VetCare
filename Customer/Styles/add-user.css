@@ -1,0 +1,77 @@
+#floatingFormContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Rubik', sans-serif;
+}
+
+.add-form-container {
+    background-color: white;
+    border-radius: 7px;
+}
+
+.add-form-container, .add-user-status-container {
+    width: 25%;
+}
+
+.add-form-container h1 {
+    text-align: center;
+    font-size: 2vh;
+    padding: 1em;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.two-columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-form input, .add-form select, .id-row {
+    margin: 0.5em 0;
+    padding: 0.7em;
+    font-size: 0.9em;
+    border: 1px solid #f2f2f2;
+    border-radius: 5px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.password input {
+    flex-basis: 43%;
+}
+
+.buttons input, .buttons button {
+    flex-basis: 47%;
+}
+
+.add-status {
+    background-color: #ffffff;
+    margin: 1em 0;
+    padding: 0.5em;
+    display: none;
+    align-items: center;
+    border-radius: 7px;
+}
+
+.add-status img {
+    width: 3em;
+    height: 3em;
+    margin: 0.5em;
+}
+
+.add-status p {
+    flex: 1;
+    text-align: center;
+}

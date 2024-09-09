@@ -1,0 +1,113 @@
+/* Banner section */
+#banner img {
+    display: none;
+}
+
+/* Banner section */
+
+/* Features section */
+#features {
+    margin: 3rem 0;
+}
+
+#features img {
+    width: 75px;
+}
+
+#features .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+#features a {
+    margin: 1rem 5rem;
+    padding: 0.5rem;
+    display: block;
+    text-align: center;
+}
+
+/* Features section */
+
+/* Client section */
+#client img {
+    display: none;
+}
+
+@media (min-width:961px) {
+    
+    #banner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+    }
+
+    #banner .header {
+        font-size: 3.5em;
+        text-align: left;
+    }
+
+    #banner .paragraph {
+        font-size: 1.2em;
+        margin: 2rem 0;
+        padding: 0;
+    }
+
+    #banner img {
+        display: block;
+        justify-self: flex-end;
+    }
+
+    #features {
+        margin: 10rem 0;
+    }
+
+    #features .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #features .grid-item img {
+        width: 300px;
+    }
+
+    #features .header {
+        margin: 5rem 0;
+        font-size: 2em;
+        font-weight: 500;
+    }
+
+    #features .grid-item h3 {
+        font-size: 1.5em;
+    }
+    
+    #features a {
+        margin: 3rem 30rem;
+    }
+
+    #client {
+        margin: 10rem 0;
+    }
+
+    #client .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #client .header {
+        font-size: 2em;
+        font-weight: 500;
+    }
+
+    #client .title {
+        margin: 5rem 0;
+    }
+
+    #client .paragraph {
+        font-size: 1.2em;
+    }
+
+    #client img {
+        display: block;
+        align-self: center;
+        justify-self: flex-start;
+        width: 500px;
+    }
+}

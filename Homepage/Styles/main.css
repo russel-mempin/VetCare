@@ -1,0 +1,224 @@
+/*Reusables*/
+.flex-container-justifybetween-aligncenter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    font-size: 1.5em;
+    margin: 1rem 0.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.active {
+    color: #ffa500;
+}
+
+.grid-container {
+    display: grid;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid-item>* {
+    margin: 0.7rem 0;
+}
+
+.button {
+    background-color: #ffa500;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 7px;
+    border: 1px solid #ffa500;
+}
+
+.button:hover {
+    background-color: #ffffff;
+    color: #ffa500;
+    border: 1px solid #ffa500;
+    transition: all 0.3s;
+}
+
+.paragraph {
+    font-size: 0.9em;
+    text-align: justify;
+}
+
+.paragraph-center {
+    text-align: center;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.orange-input {
+    border: 1px solid #ffa500;
+    padding: 0.5rem;
+    border-radius: 7px;
+}
+
+.absolute-center {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 40%;
+    width: 70%;
+}
+/* End of reusables */
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Header section */
+header {
+    background-color: #ffffff;
+    padding: 0.7rem 0.5rem;
+    border-bottom: #e6e6e6;
+}
+
+header h1 {
+    font-weight: 500;
+}
+
+header div:first-of-type>* {
+    margin: 0 0.3rem;
+}
+
+header div:last-of-type>* {
+    margin: 0 0.3rem;
+}
+
+/* Header section */
+
+/* Nav section */
+nav {
+    padding: 0.5rem;
+}
+
+nav a {
+    color: black;
+}
+
+/* Nav section */
+
+/* Main section */
+main {
+    margin: 0 1.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: #e6e6e6;
+    margin-top: 1.5rem;
+    padding: 1rem 0;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+footer .grid-item h1 {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+footer img {
+    width: 100px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #000000;
+}
+
+/* CSS grid area for footer grid items is inline */
+/* I used a grid generator */
+
+/* Footer */
+
+/* Web */
+@media (min-width:961px) {
+
+    /* Reusables */
+    .header {
+        font-size: 2.5em;
+        margin: 1rem 0.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .active {
+        background-color: #ffa500;
+        color: #ffffff;
+    }
+
+    /* End of reusables */
+
+    body {
+        font-size: 1em;
+    }
+
+    header h1 {
+        font-size: 1.7em;
+    }
+
+    header .button {
+        font-size: 1.2em;
+    }
+
+    nav {
+        padding: 1rem 0;
+    }
+
+    nav ul {
+        justify-content: flex-start !important;
+        margin: 0 9rem;
+        font-size: 1.3em;
+    }
+
+    nav ul li a {
+        border-radius: 7px;
+        padding: 1rem;
+    }
+
+    nav ul li a:hover {
+        border-radius: 7px;
+        background-color: #ffa500;
+        color: #ffffff;
+        transition: all 0.3s;
+    }
+
+    nav ul>* {
+        margin: 0 1rem;
+    }
+
+    main {
+        margin: 3rem 10rem;
+    }
+
+    footer {
+        display: flex !important;
+        justify-content: space-between;
+        padding: 5rem 10rem;
+        font-size: 1.3em;
+    }
+
+    footer .grid-item ul li {
+        margin: 1rem 0;
+    }
+
+    footer img {
+        width: 175px;
+    }
+}

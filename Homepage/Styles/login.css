@@ -1,0 +1,52 @@
+.absolute-center {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 40%;
+    width: 70%;
+}
+
+#loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid #ffa500;
+    border-radius: 7px;
+    padding: 2rem;
+}
+
+#loginContainer h1 {
+    font-weight: 500;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form > * {
+    margin: 1rem 0;
+}
+
+@media (min-width:961px) {
+    #loginContainer {
+        width: 20%;
+    }
+
+    #loginContainer h1 {
+        font-size: 1.5em;
+    }
+
+    form input {
+        font-size: 1em;
+    }
+
+    form button {
+        font-size: 1em;
+    }
+}

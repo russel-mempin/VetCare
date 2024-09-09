@@ -1,0 +1,52 @@
+.cancel-app-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancel-app-container table {
+    width: 100%;
+    /*Horizontaly expand table*/
+    font-family: 'Rubik', sans-serif;
+}
+
+.cancel-app-container table th {
+    border-bottom: 2px solid #f2f4f5;
+    padding: 15px 10px;
+    text-align: left;
+    color: #8e93a0;
+}
+
+.cancel-app-container table tr {
+    border-bottom: 2px solid #f2f4f5;
+    color: #09101d;
+}
+
+.cancel-app-container table td {
+    padding: 20px 10px;
+}
+
+.cancel-app-container table td button {
+    background-color: #ffa500;
+    border: 1px solid #ffa500;
+    border-radius: 50%;
+    color: white;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.cancel-app-container table td button:hover {
+    background-color: #ffffff;
+    border: 1px solid #ffa500;
+    border-radius: 50%;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.orange-btn-cancel {
+    margin: 10px;
+}

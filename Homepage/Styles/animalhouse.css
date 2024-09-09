@@ -1,0 +1,72 @@
+#animalHouse img {
+    display: none;
+}
+
+#vetsInService {
+    margin: 7rem 0;
+}
+
+#services {
+    margin: 7rem 0;
+}
+
+#services .title {
+    margin-bottom: 5rem;
+}
+
+#services .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+#services .grid-item img {
+    width: 75px;
+}
+
+#services .grid-item h1 {
+    text-align: center;
+}
+
+#services .grid-item .paragraph {
+    display: none;
+}
+
+@media (min-width:961px) {
+    #animalHouse .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+    }
+
+    #animalHouse .header {
+        text-align: center;
+    }
+
+    #animalHouse .paragraph {
+        font-size: 1.2em;
+        margin: 2rem 0;
+        padding: 0;
+    }
+
+    #animalHouse img {
+        width: 500px;
+        display: block;
+        justify-self: flex-start;
+    }
+
+    #vetsInService {
+        margin: 15rem 0;
+    }
+
+    #services .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    #services .grid-item img {
+        width: 150px;
+    }
+    
+    #services .grid-item .paragraph {
+        display: block;
+    }
+}

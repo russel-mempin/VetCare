@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | VetCare</title>
+    <link rel="icon" href="Images/logoonly.png">
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/reports.css">
+    <style>
+        #errorContainer,
+        #successContainer {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            width: 70%;
+            font-size: 0.9em;
+            z-index: 999;
+            bottom: 1%;
+            background-color: #ffffff;
+            border: 1px solid #ffa500;
+            border-radius: 7px;
+            padding: 0.5rem;
+        }
+
+        #errorContainer img,
+        #successContainer img {
+            width: 50px;
+            margin-right: 0.5rem;
+        }
+
+        #addForm div:nth-of-type(2) {
+            align-items: center;
+        }
+
+        #transactionsContainer {
+            margin: 1rem 0;
+        }
+
+        #transactionsContainer .grid-item {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 7px;
+        }
+
+        #transactionsContainer .grid-item div {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+        }
+
+        #transactionsContainer .grid-item div h1 {
+            color: #8d8d8d;
+        }
+
+        #transactionsContainer .grid-item div h2 {
+            font-weight: 600;
+        }
+
+        #transactionsContainer .grid-item div:first-of-type {
+            margin-top: 0;
+        }
+
+        #transactionsContainer .grid-item div:last-of-type {
+            margin-bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        #invisibleTransactionsContainer {
+            background-color: #ffffff;
+            display: none;
+        }
+
+        .print-table {
+            background-color: #ffffff;
+        }
+
+        #invisibleTransactionsContainer thead,
+        .print-table thead {
+            background-color: #ffa500;
+        }
+
+        #invisibleTransactionsContainer th,
+        .print-table th {
+            padding: 0.5rem;
+        }
+
+        #invisibleTransactionsContainer td,
+        .print-table td {
+            padding: 0.5rem 0;
+            text-align: center;
+        }
+
+        #invisibleTransactionsContainer tbody tr:nth-of-type(even) {
+            background-color: #d6d6d6;
+        }
+
+        .onebutton {
+            grid-template-columns: 1fr !important;
+        }
+
+        #invisibleReceiptsContainer {
+            display: none;
+        }
+
+        .receipt-generator {
+            background-color: #ffffff;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        #clinicDetails {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        #clinicDetails h1:first-of-type {
+            font-weight: 600;
+        }
+
+        #clinicDetails img {
+            width: 50px;
+        }
+
+        .receipt-transaction-details {
+            margin: 0.5rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .receipt-transaction-details div {
+            display: flex;
+        }
+
+        .receipt-transaction-details div h1 {
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        #signatureContainer {
+            border-top: 1px solid #8d8d8d;
+            margin-top: 3rem;
+            padding-top: 0.5rem;
+            text-align: center;
+        }
+
+        #nextAptContainer {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width:961px) {
+
+            #errorContainer,
+            #successContainer {
+                width: 19%;
+            }
+
+            #transactionsContainer {
+                grid-template-columns: repeat(4, 1fr);
+                margin: 0;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="successContainer">
+        <img src="Images/check.png">
+        <p id="successMessage">Operation Successful.</p>
+        <button type="button" id="successClose" class="btn orange-btn">OK</button>
+    </div>
+    <!--Sidenav-->
+    <nav id="sideNav" class="sticky">
+        <div id="navHead">
+            <div class="flex-container-jcenter-acenter">
+                <img src="Images/logoonly.png" alt="VetCare Logo">
+                <h1>VetCare</h1>
+            </div>
+            <div id="mobileUserSection" class="flex-container-jcenter-acenter">
+                <p id="mobileWelcomeName">Admin</p>
+                <button id="mobileProfileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="mobileProfileSettingsContainer" style="display: none;">
+                    <div id="mobileSettingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Admin</p>
+                            <a id="mobileSignOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="mobileUserDetails">
+                                <p id="mobileDisplayName">Admin</p>
+                                <p id="mobileUserEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointment-list.html">
+                        <i class="fa-solid fa-list fa-fw"></i>
+                        <p>Appointment List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="services.html">
+                        <i class="fa-solid fa-shield-dog fa-fw"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="vet-accounts.html">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Vet Accounts</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="customer-accounts.html">
+                        <i class="fa-solid fa-user fa-fw"></i>
+                        <p>Customer Accounts</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html" class="active">
+                        <i class="fa-regular fa-file-lines fa-fw"></i>
+                        <p>Reports</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <header>
+            <span onclick="toggleNav()">&#9776;</span>
+            <div>
+                <p id="welcomeName">Admin</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="webProfileSettingsContainer" style="display: none;">
+                    <div id="settingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Admin</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="userDetails">
+                                <p id="displayName">Admin</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </header>
+        <main>
+            <!--Content goes here-->
+            <h1 class="title">Reports</h1>
+            <div id="searchAndAddContainer" class="grid-container">
+                <div id="searchContainer">
+                    <input id="searchQuery" class="orange-input" type="search" placeholder="Search appointment ID...">
+                    <button id="searchBtn"><i class="fa fa-search fa-fw"></i></button>
+                </div>
+                <button type="button" id="printAllReports" class="btn orange-btn">Export All Reports</button>
+            </div>
+            <div id="transactionsContainer" class="grid-container">
+                <!-- Customer account list goes here -->
+                <h1>Loading reports...</h1>
+            </div>
+            <table id="invisibleTransactionsContainer">
+                <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Owner Name</th>
+                        <th>Pet Name</th>
+                        <th>Vet In Charge</th>
+                        <th>Service Done</th>
+                        <th>Payment Status</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AHApt</td>
+                        <td>Customer Name</td>
+                        <td>Pet name</td>
+                        <td>Vet name</td>
+                        <td>Service Name</td>
+                        <td>Payment Status</td>
+                        <td>Amount</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="invisibleReceiptsContainer" style="display: none;">
+            </div>
+        </main>
+    </div>
+    <!--Content-->
+
+    <!--Scripts-->
+    <script src="Scripts/sidenavAndProfile.js"></script>
+    <script src="Scripts/signup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"
+        integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+        import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const getSignOut = document.getElementById("signOut");
+        const getMobileSignOut = document.getElementById("mobileSignOut");
+
+        // Removed on auth state changed so everything still works without a user logged in.
+
+        // Load transactions
+        const getTransactions = ref(database, 'transactions/');
+        const getTransactionsContainer = document.getElementById("transactionsContainer");
+        const getInvisibleTransactionsContainer = document.getElementById("invisibleTransactionsContainer");
+        const tableBody = getInvisibleTransactionsContainer.getElementsByTagName('tbody')[0];
+        const getInvisibleReceiptsContainer = document.getElementById("invisibleReceiptsContainer");
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+        console.log(today);
+        onValue(getTransactions, (snapshot) => {
+            getTransactionsContainer.innerHTML = "";
+            tableBody.innerHTML = "";
+            snapshot.forEach((childSnapshot) => {
+                const data = childSnapshot.val();
+                if (data.status == "Completed" && data.paymentstatus == "Paid") {
+                    const row = "<div class='grid-item' id='" + childSnapshot.key + "'>"
+                        + "<div><h1>Appointment ID</h1><h2>" + childSnapshot.key + "</h2></div>"
+                        + "<div><h1>Owner Name</h1><h2>" + data.ownername + "</h2></div>"
+                        + "<div><h1>Pet Name</h1><h2>" + data.petname + "</h2></div>"
+                        + "<div><h1>Vet In Charge</h1><h2>" + data.veterinarian + "</h2></div>"
+                        + "<div><h1>Service Done</h1><h2>" + data.services + "</h2></div>"
+                        + "<div><h1>Payment Status</h1><h2>" + data.paymentstatus + "</h2></div>"
+                        + "<div><h1>Appointment Status</h1><h2>" + data.status + "</h2></div>"
+                        + "<div><h1>Amount</h1><h2>" + data.amount + "</h2></div>"
+                        + "<div class='onebutton'>"
+                        + "<button type='button' class='btn orange-btn print' id='" + childSnapshot.key + "'>Print</button>"
+                        + "</div>"
+                        + "</div>"
+                    getTransactionsContainer.innerHTML += row;
+                }
+                else if (data.status == "Cancelled" && data.paymentstatus == "Refund requested") {
+                    const row = "<div class='grid-item' id='" + childSnapshot.key + "'>"
+                        + "<div><h1>Appointment ID</h1><h2>" + childSnapshot.key + "</h2></div>"
+                        + "<div><h1>Owner Name</h1><h2>" + data.ownername + "</h2></div>"
+                        + "<div><h1>Pet Name</h1><h2>" + data.petname + "</h2></div>"
+                        + "<div><h1>Vet In Charge</h1><h2>" + data.veterinarian + "</h2></div>"
+                        + "<div><h1>Service Done</h1><h2>" + data.services + "</h2></div>"
+                        + "<div><h1>Payment Status</h1><h2>" + data.paymentstatus + "</h2></div>"
+                        + "<div><h1>Appointment Status</h1><h2>" + data.status + "</h2></div>"
+                        + "<div><h1>Amount</h1><h2>" + data.amount + "</h2></div>"
+                        + "<div>"
+                        + "<button type='button' class='btn orange-btn print' id='" + childSnapshot.key + "'>Print</button>"
+                        + "<button type='button' class='btn gray-btn refund' id='" + childSnapshot.key + "'>Refund</button>"
+                        + "</div>"
+                        + "</div>"
+                    getTransactionsContainer.innerHTML += row;
+                }
+                else {
+                    const row = "<div class='grid-item' id='" + childSnapshot.key + "'>"
+                        + "<div><h1>Appointment ID</h1><h2>" + childSnapshot.key + "</h2></div>"
+                        + "<div><h1>Owner Name</h1><h2>" + data.ownername + "</h2></div>"
+                        + "<div><h1>Pet Name</h1><h2>" + data.petname + "</h2></div>"
+                        + "<div><h1>Vet In Charge</h1><h2>" + data.veterinarian + "</h2></div>"
+                        + "<div><h1>Service Done</h1><h2>" + data.services + "</h2></div>"
+                        + "<div><h1>Payment Status</h1><h2>" + data.paymentstatus + "</h2></div>"
+                        + "<div><h1>Appointment Status</h1><h2>" + data.status + "</h2></div>"
+                        + "<div><h1>Amount</h1><h2>" + data.amount + "</h2></div>"
+                        + "<div class='onebutton'>"
+                        + "<button type='button' class='btn orange-btn print' id='" + childSnapshot.key + "'>Print</button>"
+                        + "</div>"
+                        + "</div>"
+                    getTransactionsContainer.innerHTML += row;
+                }
+                const tableRow = "<tr id='table" + childSnapshot.key + "'>"
+                    + "<td>" + childSnapshot.key + "</td>"
+                    + "<td>" + data.ownername + "</td>"
+                    + "<td>" + data.petname + "</td>"
+                    + "<td>" + data.veterinarian + "</td>"
+                    + "<td>" + data.services + "</td>"
+                    + "<td>" + data.paymentstatus + "</td>"
+                    + "<td>" + data.status + "</td>"
+                    + "<td>" + data.amount + "</td>"
+                    + "</tr>";
+                tableBody.innerHTML += tableRow;
+                const receiptItem = "<div class='receipt-generator' id='receipt" + childSnapshot.key + "'>"
+                    + "<h1 style='text-align: center; font-weight: 600;'>OFFICIAL RECEIPT</h1>"
+                    + "<div id='clinicDetails'>"
+                    + "<div><h1>Animal House Alabang Branch</h1><h1>G/F RCBC Building, 1770</h1><h1>Alabang–Zapote Rd, Cupang,</h1><h1> Muntinlupa, Metro Manila</h1></div>"
+                    + "</div>"
+                    + "<div class='receipt-transaction-details'>"
+                    + "<div>"
+                    + "<h1>Issued to:</h1>"
+                    + "<p>" + data.ownername + "</p>"
+                    + "</div>"
+                    + "<div>"
+                    + "<h1>Appointment ID:</h1>"
+                    + "<p>" + childSnapshot.key + "</p>"
+                    + "</div>"
+                    + "</div>"
+                    + "<div class='receipt-transaction-details'>"
+                    + "<div>"
+                    + "<h1>Date:</h1>"
+                    + "<p>" + data.date + "</p>"
+                    + "</div>"
+                    + "<div>"
+                    + "<h1>Date Issued:</h1>"
+                    + "<p>" + today + "</p>"
+                    + "</div>"
+                    + "</div>"
+                    + "<div class='receipt-transaction-details'>"
+                    + "<div>"
+                    + "<h1>Service:</h1>"
+                    + "<p>" + data.services + "</p>"
+                    + "</div>"
+                    + "<div>"
+                    + "<h1>Pet Serviced:</h1>"
+                    + "<p>" + data.petname + "</p>"
+                    + "</div>"
+                    + "</div>"
+                    + "<div class='receipt-transaction-details'>"
+                    + "<div>"
+                    + "<h1>Price:</h1>"
+                    + "<p>" + data.amount + "</p>"
+                    + "</div>"
+                    + "<div>"
+                    + "<h1>Vet In Charge:</h1>"
+                    + "<p>" + data.veterinarian + "</p>"
+                    + "</div>"
+                    + "</div>"
+                    + "<div id='signatureContainer'>"
+                    + "<p>Issued by (Printed name and signature)</p>"
+                    + "</div>"
+                    + "<div id='nextAptContainer'>"
+                    + "<p>Make your next appointment at <a href='https://vetcare-7e474.web.app/'>https://vetcare-7e474.web.app/</a></p>"
+                    + "</div></div>"
+                getInvisibleReceiptsContainer.innerHTML += receiptItem;
+            });
+
+            // Print buttons
+            // Mas maganda sana kung may image yung receipt kaso di gumagana pag may
+            // image na nakalagay kaya tanggal muna
+            // Pero kung lalagyan kasama sya nung clinicDetails, tabi ng address
+            const allPrintButtons = document.getElementsByClassName("print");
+            for (let i = 0; i < allPrintButtons.length; i++) {
+                allPrintButtons[i].addEventListener("click", (e) => {
+                    const btnAptID = allPrintButtons[i].getAttribute("id");
+                    const printItem = document.getElementById("receipt" + btnAptID);
+                    var opt = {
+                        margin: 5,
+                        filename: btnAptID
+                    };
+                    html2pdf().set(opt).from(printItem).save();
+                })
+            }
+
+            // Refund buttons
+            const allRefundButtons = document.getElementsByClassName("refund");
+            for (let i = 0; i < allRefundButtons.length; i++) {
+                allRefundButtons[i].addEventListener("click", (e) => {
+                    const btnAptID = allRefundButtons[i].getAttribute("id");
+                    onValue(getTransactions, (snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                            const key = childSnapshot.key;
+                            const data = childSnapshot.val();
+                            if (key == btnAptID) {
+                                window.open("https://getpaid.gcash.com/paymentreqs#pr-paid");
+                                if (data.paymentstatus == "Refund requested" && data.status == "Cancelled") {
+                                    update(ref(database, "appointments/" + btnAptID), {
+                                        paymentstatus: "Refunded"
+                                    })
+                                        .then(() => {
+                                            update(ref(database, "transactions/" + btnAptID), {
+                                                paymentstatus: "Refunded"
+                                            })
+                                                .then(() => {
+                                                    document.getElementById("successContainer").style.display = "flex";
+                                                    document.getElementById("successMessage").innerHTML = "Payment has been refunded."
+                                                })
+                                                .catch((error) => {
+                                                    alert(error);
+                                                });
+                                        })
+                                        .catch((error) => {
+                                            alert(error);
+                                        });
+                                }
+                            }
+                        });
+                    }, {
+                        onlyOnce: true
+                    });
+                })
+            }
+        }, {
+            onlyOnce: true
+        });
+
+        // Search
+        searchBtn.addEventListener("click", (e) => {
+            const getSearchQuery = document.getElementById("searchQuery").value;
+            onValue(getTransactions, (snapshot) => {
+                getTransactionsContainer.innerHTML = "";
+                snapshot.forEach((childSnapshot) => {
+                    const data = childSnapshot.val();
+                    if (getSearchQuery == childSnapshot.key) {
+                        const row = "<div class='grid-item' id='" + childSnapshot.key + "'>"
+                            + "<div><h1>Appointment ID</h1><h2>" + childSnapshot.key + "</h2></div>"
+                            + "<div><h1>Owner Name</h1><h2>" + data.ownername + "</h2></div>"
+                            + "<div><h1>Pet Name</h1><h2>" + data.petname + "</h2></div>"
+                            + "<div><h1>Vet In Charge</h1><h2>" + data.veterinarian + "</h2></div>"
+                            + "<div><h1>Service Done</h1><h2>" + data.services + "</h2></div>"
+                            + "<div><h1>Payment Status</h1><h2>" + data.paymentstatus + "</h2></div>"
+                            + "<div><h1>Amount</h1><h2>" + data.amount + "</h2></div>"
+                            + "<div>"
+                            + "<button type='button' class='btn orange-btn print' id='" + childSnapshot.key + "'>Print</button>"
+                            + "<button type='button' class='btn gray-btn refund' id='" + childSnapshot.key + "'>Refund</button>"
+                            + "</div>"
+                            + "</div>"
+                        getTransactionsContainer.innerHTML += row;
+                    }
+                    // If nothing is searched
+                    else if (getSearchQuery == "") {
+                        const row = "<div class='grid-item' id='" + childSnapshot.key + "'>"
+                            + "<div><h1>Appointment ID</h1><h2>" + childSnapshot.key + "</h2></div>"
+                            + "<div><h1>Owner Name</h1><h2>" + data.ownername + "</h2></div>"
+                            + "<div><h1>Pet Name</h1><h2>" + data.petname + "</h2></div>"
+                            + "<div><h1>Vet In Charge</h1><h2>" + data.veterinarian + "</h2></div>"
+                            + "<div><h1>Service Done</h1><h2>" + data.services + "</h2></div>"
+                            + "<div><h1>Payment Status</h1><h2>" + data.paymentstatus + "</h2></div>"
+                            + "<div><h1>Amount</h1><h2>" + data.amount + "</h2></div>"
+                            + "<div>"
+                            + "<button type='button' class='btn orange-btn print' id='" + childSnapshot.key + "'>Print</button>"
+                            + "<button type='button' class='btn gray-btn refund' id='" + childSnapshot.key + "'>Refund</button>"
+                            + "</div>"
+                            + "</div>"
+                        getTransactionsContainer.innerHTML += row;
+                    }
+                    else {
+                        alert("No data found.");
+                    }
+                });
+            }, {
+                onlyOnce: true
+            });
+        })
+
+        // Print all reports
+        printAllReports.addEventListener("click", (e) => {
+            const getTableHeader = getInvisibleTransactionsContainer.getElementsByTagName('thead')[0];
+            const getPrintItemFromTable = getInvisibleTransactionsContainer.getElementsByTagName('tbody')[0];
+            const printItem = "<table class='print-table'>"
+                + "<thead><tr>" + getTableHeader.innerHTML + "</tr><thead>"
+                + "<tbody><tr>" + getPrintItemFromTable.innerHTML + "</tr></tbody>"
+                + "</table>";
+            var opt = {
+                margin: 1,
+                filename: "Reports.pdf"
+            };
+            html2pdf().set(opt).from(printItem).save();
+        })
+
+        // Close success pop up
+        successClose.addEventListener('click', (e) => {
+            document.getElementById("successContainer").style.display = "none";
+            window.location.reload("reports.html");
+        })
+
+        // Sign out web user
+        getSignOut.addEventListener('click', (e) => {
+            console.log("Signing out...");
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    console.log("An error occured while signing out.");
+                });
+        });
+
+        // Sign out mobile user
+        getMobileSignOut.addEventListener('click', (e) => {
+            console.log("Signing out...");
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    console.log("An error occured while signing out.");
+                });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

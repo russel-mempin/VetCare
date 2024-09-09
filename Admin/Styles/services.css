@@ -1,0 +1,72 @@
+
+
+#addServiceContainer {
+    display: none;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+#addServiceContainer form {
+    display: flex;
+    flex-direction: column;
+}
+
+#addServiceContainer form>* {
+    margin: 0.5rem 0;
+}
+
+#addServiceContainer form div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+#serviceID {
+    text-align: right;
+}
+
+#addServiceContainer .dropdown-list {
+    margin: 0;
+    flex-basis: auto;
+}
+
+#servicesContainer {
+    margin: 1rem 0;
+    gap: 1rem;
+}
+
+#servicesContainer .grid-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+#servicesContainer .grid-item div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#servicesContainer .grid-item h1 {
+    color: #989ba3;
+}
+
+#servicesContainer .grid-item p {
+    font-weight: 600;
+}
+
+@media (min-width:961px) {
+    #servicesContainer {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0;
+    }
+
+    #searchAndAddContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    #searchContainer {
+        margin-right: 0.5rem;
+    }
+}

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Profile | VetCare</title>
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="Images/logoonly.png">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/account-profile.css">
+</head>
+
+<body>
+
+    <!--Sidenav-->
+    <nav id="sideNav" class="sticky">
+        <div id="navHead">
+            <div class="flex-container-jcenter-acenter">
+                <img src="Images/logoonly.png" alt="VetCare Logo">
+                <h1>VetCare</h1>
+            </div>
+            <div id="mobileUserSection" class="flex-container-jcenter-acenter">
+                <p id="mobileWelcomeName">Display Name</p>
+                <button id="mobileProfileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="mobileProfileSettingsContainer" style="display: none;">
+                    <div id="mobileSettingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Customer</p>
+                            <a id="mobileSignOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="mobileUserDetails">
+                                <p id="mobileDisplayName">Display Name</p>
+                                <p id="mobileUserEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fa-solid fa-calendar-days fa-fw"></i>
+                        <p>Appointments</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="pet-records.html">
+                        <i class="fa-solid fa-book-medical fa-fw"></i>
+                        <p>Pets</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="transactions.html">
+                        <i class="fa-solid fa-receipt fa-fw"></i>
+                        <p>Transactions</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="services.html">
+                        <i class="fa-solid fa-paw fa-fw"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="vet-directory.html">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Vet Directory</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="account-profile.html" class="active">
+                        <i class="fa-solid fa-address-card fa-fw"></i>
+                        <p>Account</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="inbox.html">
+                        <i class="fa-solid fa-message fa-fw"></i>
+                        <p>Inbox</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <header>
+            <span onclick="toggleNav()">&#9776;</span>
+            <div>
+                <p id="welcomeName">User</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="webProfileSettingsContainer" style="display: none;">
+                    <div id="settingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Customer</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="userDetails">
+                                <p id="displayName">Display Name</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </header>
+        <main>
+            <h3>Account Profile</h3>
+            <div class="contact-container">
+                <div class="contact-info-box">
+                    <div class="contact-info-row">
+                        <div>
+                            <p>Name:</p>
+                            <p id="customerName">Current Name</p>
+                            <input type="text" id="newName" class="orange-input" style="display: none;"
+                                placeholder="Enter new name" />
+                        </div>
+                        <div>
+                            <button id="customerNameEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="customerNameCancelBtn" class="btn gray-btn"
+                                style="display: none;">Cancel</button>
+                            <button id="customerNameSaveBtn" class="btn orange-btn" style="display: none;">Save</button>
+                        </div>
+                    </div>
+                    <div class="contact-info-row">
+                        <div>
+                            <p>E-Mail:</p>
+                            <p id="customerEmail">Current Email</p>
+                            <input type="text" id="newEmail" class="orange-input" style="display: none;"
+                                placeholder="Enter new E-Mail" />
+                        </div>
+                        <div>
+                            <button id="customerEmailEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="customerEmailCancelBtn" class="btn gray-btn"
+                                style="display: none;">Cancel</button>
+                            <button id="customerEmailSaveBtn" class="btn orange-btn"
+                                style="display: none;">Save</button>
+                        </div>
+                    </div>
+                    <div class="contact-info-row">
+                        <div>
+                            <p>Phone:</p>
+                            <p id="customerPhone">Current Phone Number</p>
+                            <input type="number" id="newPhone" class="orange-input" style="display: none;"
+                                placeholder="Enter new phone #" />
+                        </div>
+                        <div>
+                            <button id="customerPhoneEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="customerPhoneCancelBtn" class="btn gray-btn"
+                                style="display: none;">Cancel</button>
+                            <button id="customerPhoneSaveBtn" class="btn orange-btn"
+                                style="display: none;">Save</button>
+                        </div>
+                    </div>
+                    <div class="contact-info-row">
+                        <div>
+                            <p>Address:</p>
+                            <p id="customerAddress">Current Address</p>
+                            <input type="text" id="newAddress" class="orange-input" style="display: none;"
+                                placeholder="Enter new address" />
+                        </div>
+                        <div>
+                            <button id="customerAddressEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="customerAddressCancelBtn" class="btn gray-btn"
+                                style="display: none;">Cancel</button>
+                            <button id="customerAddressSaveBtn" class="btn orange-btn"
+                                style="display: none;">Save</button>
+                        </div>
+                    </div>
+                    <div class="contact-info-row">
+                        <div>
+                            <p>Telephone:</p>
+                            <p id="customerTele">Current Telephone Number</p>
+                            <input type="number" id="newTele" class="orange-input" style="display: none;"
+                                placeholder="Enter new Telephone #" />
+                        </div>
+                        <div>
+                            <button id="customerTeleEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="customerTeleCancelBtn" class="btn gray-btn"
+                                style="display: none;">Cancel</button>
+                            <button id="customerTeleSaveBtn" class="btn orange-btn" style="display: none;">Save</button>
+                        </div>
+                    </div>
+                    <div class="contact-info-row">
+                        <div>
+                            <p>Password:</p>
+                            <p id="customerPassword">Current Password</p>
+                            <input id="newPassword" type="password" class="orange-input" style="display: none;"
+                                placeholder="Enter new password" />
+                        </div>
+                        <div>
+                            <button id="customerPasswordEditBtn" class="btn orange-btn">Edit</button>
+                            <button id="customerPasswordCancelBtn" class="btn gray-btn"
+                                style="display: none;">Cancel</button>
+                            <button id="customerPasswordSaveBtn" class="btn orange-btn"
+                                style="display: none;">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-picture-box flex-container-jcenter-acenter">
+                    <img src="Images/logoonly.png">
+                    <h1 id="profileCustomerName">Name</h1>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!--Content-->
+
+    <!--Scripts-->
+    <script src="Scripts/sideNavAndProfile.js"></script>
+    <script src="Scripts/editProfile.js"></script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signOut, updateProfile, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth();
+        const getSignOut = document.getElementById("signOut");
+        const getMobileSignOut = document.getElementById("mobileSignOut");
+
+        // Check if the user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in with uid: " + user.uid);
+                document.getElementById("welcomeName").innerHTML = "Welcome, " + user.displayName + "!"; // Assign to welcome section
+                document.getElementById("displayName").innerHTML = user.displayName; // Assign to user profile section
+                document.getElementById("userEmail").innerHTML = user.email; // Assign to user profile section
+
+                document.getElementById("mobileWelcomeName").innerHTML = user.displayName; // Assign to mobile welcome section
+                document.getElementById("mobileDisplayName").innerHTML = user.displayName; // Assign to mobile display name
+                document.getElementById("mobileUserEmail").innerHTML = user.email; // Assign to mobile user profile section
+
+                // Display to contact information section (Name and email is gotten from auth instead of database. Auth does not store user passwords.)
+                const reference = ref(db, 'customer_account/' + user.uid + '/customer_details');
+                onValue(reference, (snapshot) => {
+                    const data = snapshot.val();
+                    const getPassword = data.password;
+                    const getDoctorPosition = data.doctorPosition;
+
+                    // Display to contact information
+                    document.getElementById("customerName").innerHTML = user.displayName;
+                    document.getElementById("customerEmail").innerHTML = user.email;
+                    document.getElementById("customerPhone").innerHTML = data.contact;
+                    document.getElementById("customerAddress").innerHTML = data.address;
+                    document.getElementById("customerTele").innerHTML = data.telephone;
+                    document.getElementById("customerPassword").innerHTML = getPassword;
+                    document.getElementById("profileCustomerName").innerHTML = user.displayName;
+                })
+                // Update customer name to database and update displayName in auth
+                customerNameSaveBtn.addEventListener('click', (e) => {
+                    const newName = document.getElementById("newName").value;
+                    // Updating customer in database
+                    update(reference, {
+                        ownername: newName
+                    })
+                        .then(() => {
+                            // Data updated successfully
+                            console.log("Successfully updated ownername");
+                        })
+                        .catch((error) => {
+                            alert(error)
+                        })
+
+                    // Updates displayName in auth and if successful, refreshes the page.
+                    updateProfile(auth.currentUser, {
+                        displayName: newName
+                    }).then(() => {
+                        console.log("Successfully updated user display name. Reloading page...");
+                        location.reload();
+                    }).catch((error) => {
+                        console.log("There was an error in updating user display name." + error);
+                    });
+
+                    // Toggles display of elements used in updating name
+                    document.getElementById("customerName").style.display = "block";
+                    document.getElementById("customerNameEditBtn").style.display = "block";
+                    document.getElementById("newName").style.display = "none";
+                    document.getElementById("customerNameCancelBtn").style.display = "none";
+                    document.getElementById("customerNameSaveBtn").style.display = "none";
+                })
+
+                // Update customer email
+                customerEmailSaveBtn.addEventListener('click', (e) => {
+                    const newEmail = document.getElementById("newEmail").value;
+                    // Updating email in database
+                    update(reference, {
+                        email: newEmail
+                    })
+                        .then(() => {
+                            console.log("Successfully updated user email in the database.");
+                        })
+                        .catch((error) => {
+                            alert(error)
+                        })
+
+                    // Updates email in auth and if successful, refreshes the page.
+                    updateEmail(auth.currentUser, newEmail).then(() => {
+                        // Email updated!
+                        console.log("Successfully updated user email in auth.");
+                        location.reload();
+                    }).catch((error) => {
+                        // An error occurred
+                        console.log("There was an error in updating user email." + error);
+                    });
+
+                    // Toggles display of elements used in updating email
+                    document.getElementById("customerEmail").style.display = "block";
+                    document.getElementById("customerEmailEditBtn").style.display = "block";
+                    document.getElementById("newEmail").style.display = "none";
+                    document.getElementById("customerEmailCancelBtn").style.display = "none";
+                    document.getElementById("customerEmailSaveBtn").style.display = "none";
+                })
+
+                // Update customer phone number
+                customerPhoneSaveBtn.addEventListener("click", (e) => {
+                    var newPhone = document.getElementById("newPhone").value;
+                    update(reference, {
+                        contact: newPhone
+                    })
+                        .then(() => {
+                            console.log("Successfully updated user phone in the database.");
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            alert(error)
+                        })
+                    // Toggles display of elements used in updating email
+                    document.getElementById("customerPhone").style.display = "block";
+                    document.getElementById("customerPhoneEditBtn").style.display = "block";
+                    document.getElementById("newPhone").style.display = "none";
+                    document.getElementById("customerPhoneCancelBtn").style.display = "none";
+                    document.getElementById("customerPhoneSaveBtn").style.display = "none";
+                })
+
+                // Update customer address
+                customerAddressSaveBtn.addEventListener("click", (e) => {
+                    var newAddress = document.getElementById("newAddress").value;
+                    update(reference, {
+                        address: newAddress
+                    })
+                        .then(() => {
+                            console.log("Successfully updated user address in the database.");
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            alert(error)
+                        })
+                    // Toggles display of elements used in updating email
+                    document.getElementById("customerAddress").style.display = "block";
+                    document.getElementById("customerAddressEditBtn").style.display = "block";
+                    document.getElementById("newAddress").style.display = "none";
+                    document.getElementById("customerAddressCancelBtn").style.display = "none";
+                    document.getElementById("customerAddressSaveBtn").style.display = "none";
+                })
+
+                // Update customer tele
+                customerTeleSaveBtn.addEventListener("click", (e) => {
+                    var newTele = document.getElementById("newTele").value;
+                    update(reference, {
+                        telephone: newTele
+                    })
+                        .then(() => {
+                            console.log("Successfully updated user telephone in the database.");
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            alert(error)
+                        })
+                    // Toggles display of elements used in updating email
+                    document.getElementById("customerTele").style.display = "block";
+                    document.getElementById("customerTeleEditBtn").style.display = "block";
+                    document.getElementById("newTele").style.display = "none";
+                    document.getElementById("customerTeleCancelBtn").style.display = "none";
+                    document.getElementById("customerTeleSaveBtn").style.display = "none";
+                })
+
+                // Update customer password
+                customerPasswordSaveBtn.addEventListener('click', (e) => {
+                    var newPassword = document.getElementById("newPassword").value;
+                    var confirmNewPassword = document.getElementById("confirmNewPassword").value;
+                    // Updating password in database
+                    update(reference, {
+                        password: newPassword
+                    })
+                        .then(() => {
+                            console.log("Successfully updated password in the database.");
+                        })
+
+                    // Updating password in auth
+                    updatePassword(user, newPassword).then(() => {
+                        // Update successful.
+                        console.log("Successfully updated password in auth.");
+                        location.reload();
+                    }).catch((error) => {
+                        // An error ocurred
+                        // ...
+                    });
+
+                    // Toggles display of elements used in updating password
+                    document.getElementById("customerPassword").style.display = "block";
+                    document.getElementById("customerPasswordEditBtn").style.display = "block";
+                    document.getElementById("newPassword").style.display = "none";
+                    document.getElementById("customerPasswordCancelBtn").style.display = "none";
+                    document.getElementById("customerPasswordSaveBtn").style.display = "none";
+                    document.getElementById("confirmNewPassword").style.display = "none";
+                })
+            }
+            else {
+                //
+            }
+        });
+        // Sign out user
+        getSignOut.addEventListener('click', (e) => {
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    alert("An error occured while signing out.");
+                });
+        });
+
+        // Sign out mobile user
+        getMobileSignOut.addEventListener('click', (e) => {
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    alert("An error occured while signing out.");
+                });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

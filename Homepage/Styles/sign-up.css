@@ -1,0 +1,47 @@
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.form-row > * {
+    margin: 0.2rem 0;
+}
+
+.header {
+    display: none;
+}
+
+#termsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#termsContainer label {
+    font-size: 0.8em;
+}
+
+.button {
+    margin: 1rem 0;
+}
+
+@media (min-width:961px) {
+    .header {
+        display: block;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .grid-item {
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .grid-item button {
+        font-size: 1.3em;
+    }
+}

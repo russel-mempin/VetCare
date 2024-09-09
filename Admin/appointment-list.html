@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment List | VetCare</title>
+    <link rel="icon" href="Images/logoonly.png">
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+    <link rel="stylesheet" href="Styles/appointment-list.css">
+</head>
+
+<body>
+    <!--Sidenav-->
+    <nav id="sideNav" class="sticky">
+        <div id="navHead">
+            <div class="flex-container-jcenter-acenter">
+                <img src="Images/logoonly.png" alt="VetCare Logo">
+                <h1>VetCare</h1>
+            </div>
+            <div id="mobileUserSection" class="flex-container-jcenter-acenter">
+                <p id="mobileWelcomeName">Admin</p>
+                <button id="mobileProfileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="mobileProfileSettingsContainer" style="display: none;">
+                    <div id="mobileSettingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Admin</p>
+                            <a id="mobileSignOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="mobileUserDetails">
+                                <p id="mobileDisplayName">Admin</p>
+                                <p id="mobileUserEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointment-list.html" class="active">
+                        <i class="fa-solid fa-list fa-fw"></i>
+                        <p>Appointment List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="services.html">
+                        <i class="fa-solid fa-shield-dog fa-fw"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="vet-accounts.html">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Vet Accounts</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="customer-accounts.html">
+                        <i class="fa-solid fa-user fa-fw"></i>
+                        <p>Customer Accounts</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html">
+                        <i class="fa-regular fa-file-lines fa-fw"></i>
+                        <p>Reports</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <header>
+            <span onclick="toggleNav()">&#9776;</span>
+            <div>
+                <p id="welcomeName">Admin</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="webProfileSettingsContainer" style="display: none;">
+                    <div id="settingsItems">
+                        <div class="profile-settings-container-row">
+                            <p>VetCare Admin</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="profile-settings-container-row">
+                            <img src="Images/logoonly.png">
+                            <div id="userDetails">
+                                <p id="displayName">Admin</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </header>
+        <main>
+            <!--Content goes here-->
+            <h1 class="title">Appointment List</h1>
+            <div id="filtersContainer">
+                <button type="button" id="showAddAppointment" class="btn orange-btn">Add Appointment</button>
+                <div id="searchContainer">
+                    <input id="searchQuery" class="orange-input" type="search" placeholder="Search AptID">
+                    <button id="searchBtn"><i class="fa fa-search fa-fw"></i></button>
+                </div>
+            </div>
+            <div id="cardsAppointmentContainer" class="grid-container">
+                <p>Loading appointments...</p>
+            </div>
+            <div id="bookAppointmentContainer" style="display: none">
+                <h1 class="title">Booking an Appointment</h1>
+                <form id="addAptForm">
+                    <div>
+                        <h1>Appointment ID: </h1>
+                        <p id="aptID">AHApt</p>
+                    </div>
+                    <input type="text" id="ownername" class="orange-input" placeholder="Owner name" />
+                    <div>
+                        <select id="servicesDropdown" class="dropdown-list">
+                            <option disabled selected hidden>Select a Service</option>
+                            <!-- Filled with items from database -->
+                        </select>
+                        <select id="vetsDropdown" class="dropdown-list">
+                            <option disabled selected hidden>Select a Vet</option>
+                            <!-- Filled with items from database -->
+                        </select>
+                    </div>
+                    <h1 class="title">Pet Details</h1>
+                    <div>
+                        <input type="text" id="petName" class="orange-input" placeholder="Your pet's name" />
+                        <input type="text" id="petType" class="orange-input"
+                            placeholder="Is your pet a dog, cat, etc." />
+                    </div>
+                    <input type="text" id="petBreed" class="orange-input" placeholder="Pet breed" />
+                    <select id="petSex" class="dropdown-list">
+                        <option disabled selected hidden>Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    <div>
+                        <label>Date of birth:</label>
+                        <input type="date" id="petBirth" class="orange-input" />
+                    </div>
+                    <h1 class="title">Appointment Date</h1>
+                    <div>
+                        <label>Select date:</label>
+                        <input type="date" id="datepicker" class="orange-input">
+                    </div>
+                    <div>
+                        <label>Select time:</label>
+                        <select id="timepicker" class="orange-input">
+                            <option value="07.00">07:00 AM</option>
+                            <option value="07.30">07:30 AM</option>
+                            <option value="08.00">08:00 AM</option>
+                            <option value="08.30">08:30 AM</option>
+                            <option value="09.00">09:00 AM</option>
+                            <option value="09.30">09:30 AM</option>
+                            <option value="10.00">10:00 AM</option>
+                            <option value="10.30">10:30 AM</option>
+                            <option value="11.00">11:00 AM</option>
+                            <option value="11.30">11:30 AM</option>
+                            <option value="12.00">12:00 PM</option>
+                            <option value="12.30">12:30 PM</option>
+                            <option value="13.00">1:00 PM</option>
+                            <option value="13.30">1:30 PM</option>
+                            <option value="14.00">2:00 PM</option>
+                            <option value="14.30">2:30 PM</option>
+                            <option value="15.00">3:00 PM</option>
+                            <option value="15.30">3:30 PM</option>
+                            <option value="16.00">4:00 PM</option>
+                            <option value="16.30">4:30 PM</option>
+                            <option value="17.00">5:00 PM</option>
+                            <option value="17.30">5:30 PM</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="button" id="closeBookApt" class="btn gray-btn">Close</button>
+                        <button type="button" id="bookApt" class="btn orange-btn">Book Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <!--Content-->
+
+    <!--Scripts-->
+    <script src="Scripts/sidenavAndProfile.js"></script>
+    <script src="Scripts/date-time.js"></script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+        import { getDatabase, ref, onValue, set, child, update } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const getSignOut = document.getElementById("signOut");
+        const getMobileSignOut = document.getElementById("mobileSignOut");
+        const database = getDatabase(app);
+
+        // Removed on auth state changed so everything still works without a user logged in.
+
+        // Read appointments from database / Read child of child
+        var rowNum = 0;
+        var getContainer = document.getElementById("cardsAppointmentContainer");
+        const getAppointments = ref(database, 'appointments/');
+        // Gets the customers who made an appointment
+        onValue(getAppointments, (snapshot) => {
+            getContainer.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const childKeyApt = childSnapshot.key;
+                const childDataApt = childSnapshot.val();
+                const card = "<div class='grid-item'>" +
+                    "<div><h1>Appointment ID</h1>" + "<p>" + childKeyApt + "</p></div>" +
+                    "<div><h1>Customer Name</h1>" + "<p>" + childDataApt.ownername + "</p></div>" +
+                    "<div><h1>Pet Name</h1>" + "<p>" + childDataApt.petname + "</p></div>" +
+                    "<div><h1>Service</h1>" + "<p>" + childDataApt.services + "</p></div>" +
+                    "<div><h1>Appointment Date</h1>" + "<p>" + childDataApt.date + "</p></div>" +
+                    "<div><h1>Appointment Time</h1>" + "<p>" + childDataApt.time + "</p></div>" +
+                    "<div><h1>Status</h1>" + "<p>" + childDataApt.status + "</p></div>" +
+                    "<div><h1>Payment Status</h1>" + "<p>" + childDataApt.paymentstatus + "</p></div>" +
+                    "</div>";
+                getContainer.innerHTML += card;
+                //var row = "<tr><td>" + childDataApt.ownername + "</td><td>" + childDataApt.petname + "</td><td>" + childDataApt.services + "</td><td>" + childDataApt.date + "</td><td>" + childDataApt.time + "</td><td>" + childDataApt.status + "</td></tr>";
+                //getContainer.innerHTML += row;
+            });
+        }, {
+            onlyOnce: true
+        });
+
+        showAddAppointment.addEventListener("click", (e) => {
+            document.getElementById("bookAppointmentContainer").style.display = "block";
+            getContainer.style.display = "none";
+            const getCustomerCount = ref(database, 'counters');
+            var customerCount;
+
+            // Validation
+            const currentTimeandDateAppointment = []
+
+            const getAppointments = ref(database, 'appointments/');
+            var counter = 1;
+            onValue(getAppointments, (snapshot) => {
+                snapshot.forEach((childSnapshot) => {
+                    counter++;
+                    document.getElementById("aptID").innerHTML = "AHApt" + counter;
+
+                    // For validation
+                    const childData = childSnapshot.val();
+                    const appointments = Object.keys(childData).map(key => childData[key])
+                    currentTimeandDateAppointment.push(...appointments);
+                });
+            }, {
+                onlyOnce: true
+            });
+            document.getElementById("aptID").innerHTML = "AHApt" + counter;
+
+            // Gets the services from the database and put them into the drop down list
+            const getServices = ref(database, 'services/');
+            const getServicesDropdown = document.getElementById("servicesDropdown");
+            onValue(getServices, (snapshot) => {
+                getServicesDropdown.innerHTML = "";
+                snapshot.forEach((childSnapshot) => {
+                    const data = childSnapshot.val();
+                    const row = "<option id='" + data.serviceName + "' value='" + data.servicePrice + "'>" + data.serviceName + "</option>";
+                    getServicesDropdown.innerHTML += row;
+                });
+            }, {
+                onlyOnce: true
+            });
+
+            // Gets the veterinarians from the database and put them into the drop down list
+            const getVets = ref(database, 'veterinarian_account/');
+            const getVetsDropdown = document.getElementById("vetsDropdown");
+            onValue(getVets, (snapshot) => {
+                getVetsDropdown.innerHTML = "";
+                snapshot.forEach((childSnapshot) => {
+                    const data = childSnapshot.val();
+                    const row = "<option value='" + data.doctorName + "'>" + data.doctorName + "</option>";
+                    getVetsDropdown.innerHTML += row;
+                });
+            }, {
+                onlyOnce: true
+            });
+
+            // Save appointment data to database (With validation)
+            bookApt.addEventListener("click", (e) => {
+                var getServicesDropdown = document.getElementById("servicesDropdown");
+
+                var aptID = document.getElementById("aptID").innerHTML;
+                var ownername = document.getElementById("ownername").value;
+                var servicename = getServicesDropdown.options[getServicesDropdown.selectedIndex].text;
+                var serviceprice = getServicesDropdown.value;
+                var vet = document.getElementById("vetsDropdown").value;
+                var pet = document.getElementById("petName").value;
+                var date = document.getElementById("datepicker").value;
+                var time = document.getElementById("timepicker").value;
+
+                // Validation
+                let dateCount = 0
+                currentTimeandDateAppointment.forEach(({ date: existingDate, time: existingTime }) => {
+                    if (existingDate === date && existingTime === time) {
+                        dateCount++
+                    }
+                })
+
+                // Bug: maraming beses nag aalert pag maraming beses nag appointment ng hindi nag rerefresh
+                // Ginawa ko muna refresh para di mahalata 
+                if (ownername != "" && serviceprice != "Select a Service" && vet != "Select a Vet" && date != "") {
+
+                    // Get customer count
+                    onValue(getCustomerCount, (snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                            const data = childSnapshot.val();
+                            console.log(data);
+                            customerCount = data;
+                            console.log(customerCount);
+                        });
+                    }, {
+                        onlyOnce: true
+                    });
+
+                    set(ref(database, 'appointments/' + aptID), {
+                        ownername: ownername,
+                        petname: pet,
+                        services: servicename,
+                        veterinarian: vet,
+                        date: date,
+                        time: time,
+                        status: "Pending",
+                        paymentstatus: "Walk-In",
+                        amount: serviceprice
+                    })
+                        .then(() => {
+                            alert("Appointment has been booked.");
+                            // document.getElementById("bookAppointmentContainer").style.display = "none";
+                            customerCount++;
+                            update(ref(database, 'counters'), {
+                                customerCount: customerCount
+                            })
+                            window.location.href = "sign-up-success.html";
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            alert("Appointment booking has failed. " + error);
+                        });
+
+                }
+                else if (dateCount >= 3) {
+                    alert("Fully Booked!!");
+                }
+                else {
+                    alert("Please finish filling up the form to book your appointment.");
+                }
+            })
+
+            // Close book appointment form
+            closeBookApt.addEventListener("click", (e) => {
+                document.getElementById("bookAppointmentContainer").style.display = "none";
+            });
+        })
+
+        // Sign out web user
+        getSignOut.addEventListener('click', (e) => {
+            console.log("Signing out...");
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    console.log("An error occured while signing out.");
+                });
+        });
+
+        // Sign out mobile user
+        getMobileSignOut.addEventListener('click', (e) => {
+            console.log("Signing out...");
+            signOut(auth).then(() => {
+                window.location.href = "../Homepage/account-type.html"
+            })
+                .catch((error) => {
+                    console.log("An error occured while signing out.");
+                });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

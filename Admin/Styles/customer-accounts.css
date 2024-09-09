@@ -1,0 +1,35 @@
+#customerAccountsContainer {
+    margin: 1rem 0;
+}
+
+#customerAccountsContainer .grid-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+#customerAccountsContainer .grid-item div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#customerAccountsContainer .grid-item h1 {
+    color: #989ba3;
+}
+
+#customerAccountsContainer .grid-item p {
+    font-weight: 600;
+}
+
+@media (min-width:961px) {
+    #customerAccountsContainer {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0;
+    }
+
+    #customerAccountsContainer .grid-item div {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem 0;
+    }
+}

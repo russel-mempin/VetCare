@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success | VetCare</title>
+    <script src="https://kit.fontawesome.com/84d068d690.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="Images/logoonly.png">
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/main.css">
+</head>
+
+<body>
+    <!--Invisible div for error logs-->
+    <div id="errorLoggingContainer">
+        <div class="error-log">
+            <img src="Images/logo.png">
+            <p id="error-description">Please login your account to use VetCare.</p>
+            <button id="backToLogin">Login</button>
+        </div>
+    </div>
+    <!--Invisible div for error logs-->
+
+    <!--Sidenav-->
+    <div id="sidenav">
+        <div class="sidenav-header">
+            <img src="Images/logoonly.png">
+            <h1>VetCare</h1>
+        </div>
+        <div class="links">
+            <ul>
+                <li class="active">
+                    <a href="index.html">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fa-solid fa-calendar-days fa-fw"></i>
+                        <p>Appointments</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="pet-records.html">
+                        <i class="fa-solid fa-book-medical fa-fw"></i>
+                        <p>Pet Medical Records</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="transactions.html">
+                        <i class="fa-solid fa-receipt fa-fw"></i>
+                        <p>Transactions</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="services.html">
+                        <i class="fa-solid fa-paw fa-fw"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="vet-directory.html">
+                        <i class="fa-solid fa-user-doctor fa-fw"></i>
+                        <p>Vet Directory</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="account-profile.html">
+                        <i class="fa-solid fa-address-card fa-fw"></i>
+                        <p>Account Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="inbox.html">
+                        <i class="fa-solid fa-message fa-fw"></i>
+                        <p>Inbox</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fa-solid fa-gear fa-fw"></i>
+                        <p>Settings</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--Sidenav-->
+
+    <!--Content-->
+    <div id="contentContainer">
+        <div id="topnav">
+            <div class="one">
+                <span onclick="toggleNav()">&#9776;</span>
+            </div>
+            <div class="two">
+                <p id="welcomename" class="username">User</p>
+                <button id="profileSettingsBtn"><i class="fa-solid fa-user fa-fw"></i></button>
+                <!-- Profile Settings -->
+                <div id="profileSettingsContainer" style="display: none;">
+                    <div class="setting-items">
+                        <div class="row">
+                            <p>VetCare Customer</p>
+                            <a id="signOut">Sign Out</a>
+                        </div>
+                        <div class="row">
+                            <img src="Images/logoonly.png">
+                            <div class="user-details">
+                                <p id="displayName">Display Name</p>
+                                <p id="userEmail">Email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Settings -->
+            </div>
+        </div>
+        <div id="content">
+
+        </div>
+    </div>
+    <!--Content-->
+
+    <!--Scripts-->
+    <script src="Scripts/sidenav.js"></script>
+    <script src="Scripts/profile.js"></script>
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN94giJdXcm5rxAWL6h9H8Qvjui8vbv8c",
+            authDomain: "vetcare-7e474.firebaseapp.com",
+            databaseURL: "https://vetcare-7e474-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "vetcare-7e474",
+            storageBucket: "vetcare-7e474.appspot.com",
+            messagingSenderId: "1073603430864",
+            appId: "1:1073603430864:web:7b894986b244cace51d1d5",
+            measurementId: "G-T91WHZPKF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+        const getSignOut = document.getElementById("signOut");
+
+        // Check if the user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is signed in with uid: " + user.uid);
+                const displayName = user.displayName;
+                const email = user.email;
+                document.getElementById("welcomename").innerHTML = "Welcome, " + displayName + "!"; // Assign to welcome section
+                document.getElementById("displayName").innerHTML = displayName; // Assign to user profile section
+                document.getElementById("userEmail").innerHTML = email; // Assign to user profile section
+            } else {
+                // User is signed out
+                // ...
+            }
+
+            // Sign out user
+            getSignOut.addEventListener('click', (e) => {
+                console.log("Signing out...");
+                signOut(auth).then(() => {
+                    window.location.href = "../index.html"
+                })
+                    .catch((error) => {
+                        console.log("An error occured while signing out.");
+                    });
+            });
+        });
+    </script>
+    <!--Scripts-->
+</body>
+
+</html>

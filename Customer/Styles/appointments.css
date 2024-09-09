@@ -1,0 +1,180 @@
+#errorContainer, #successContainer {
+    display: none;
+    align-items: center;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 70%;
+    font-size: 0.9em;
+    z-index: 999;
+    bottom: 1%;
+    background-color: #ffffff;
+    border: 1px solid #ffa500;
+    border-radius: 7px;
+    padding: 0.5rem;
+}
+
+#errorContainer img, #successContainer img {
+    width: 50px;
+    margin-right: 0.5rem;
+}
+
+#buttonRow {
+    margin: 1rem 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+#bookAppointmentContainer {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+#bookAppointmentContainer form {
+    margin: 1rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#bookAppointmentContainer form>* {
+    margin: 0.5rem 0;
+}
+
+#bookAppointmentContainer form div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    align-items: center;
+}
+
+#bookAppointmentContainer form div:nth-of-type(2) {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+#aptID {
+    justify-self: flex-end;
+}
+
+#cancelContainer {
+    margin: 1rem 0;
+}
+
+#appointmentsContainer .grid-item,
+#cancelContainer .grid-item {
+    background-color: #ffffff;
+    border-radius: 7px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#cancelContainer .grid-item button {
+    margin-top: 1rem;
+}
+
+.pet-details .title {
+    margin-bottom: 0.5rem;
+}
+
+.vet-details {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    margin: 0.5rem 0;
+}
+
+.vet-details div>* {
+    margin: 0.5rem 0;
+}
+
+.vet-details div h2 {
+    font-size: 0.8em;
+    color: #7e7e7e;
+}
+
+.vet-details i {
+    background-color: #ffa500;
+    color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+}
+
+.appointment-details {
+    border-top: 1px solid #dadada;
+    padding-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.appointment-details div {
+    display: flex;
+    align-items: center;
+}
+
+.appointment-details div i,
+.appointment-details div h1 {
+    font-size: 0.8em;
+    margin: 0 0.25em;
+}
+
+.appointment-details div:first-of-type i {
+    margin: 0 0.25rem 0 0;
+}
+
+.appointment-details div:first-of-type h1 {
+    margin: 0 0 0 0.25rem;
+}
+
+.appointment-details div:last-of-type i {
+    margin: 0 0.25rem 0 0;
+}
+
+.appointment-details div:last-of-type h1 {
+    margin: 0 0 0 0.25rem;
+}
+
+#viewAppointmentsContainer .filter {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+@media (min-width:961px) {
+
+    #errorContainer, #successContainer {
+        width: 19%;
+    }
+
+    #buttonRow {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    /* For small, centered book appointment form */
+    /* #bookAppointmentContainer {
+        align-self: center;
+        width: 30%;
+    } */
+
+    #bookAppointmentContainer .title {
+        text-align: center;
+    }
+
+    #bookAppointmentContainer form div:nth-of-type(2) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #appointmentsContainer,
+    #cancelContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #appointmentsContainer .grid-item .title,
+    #cancelContainer .grid-item .title {
+        text-align: center;
+        font-size: 1em;
+    }
+
+}
